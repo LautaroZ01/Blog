@@ -4,7 +4,7 @@ export const Nav = () => {
 
     return (
         <nav>
-            <ul className="flex flex-1 items-center justify-center gap-3">
+            <ul className="flex flex-1 items-center justify-center gap-3 p-2">
                 <li>
                     <Buttom path={"/user"} isButton={false} type={2}>Iniciar Sesion</Buttom>
                 </li>
