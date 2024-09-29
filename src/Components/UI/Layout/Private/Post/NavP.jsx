@@ -10,13 +10,17 @@ export const NavP = ({ user = {} }) => {
         setIsMenuVisible(!isMenuVisible);
     };
 
+    const hideMenu = () => {
+        setIsMenuVisible(false);
+    };
+
     return (
         <nav>
             <ul className="flex flex-1 items-center justify-center gap-3 relative">
                 <li>
                     <Buttom onClick={toggleMenu}>
                         {user.photo !== 'https://user.svg' ? (
-                            <img src={user.photo} alt={user.username} />
+                            <img src={user.photo} alt={user.username} className="w-5 h-5 rounded-full" />
                         ) : (
                             <FaRegUser />
                         )}
@@ -26,7 +30,9 @@ export const NavP = ({ user = {} }) => {
                     </Buttom>
                 </li>
 
-                {isMenuVisible && <Menu />}
+                {isMenuVisible && (
+                    <Menu onMouseLeave={hideMenu} />
+                )}
             </ul>
         </nav>
     );

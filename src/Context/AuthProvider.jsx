@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
             if (request.status === 403) {
                 setAuth(null);
-                console.clear();
+                console.clear()
                 return;
             }
 

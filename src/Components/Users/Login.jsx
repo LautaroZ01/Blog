@@ -14,7 +14,11 @@ export const Login = () => {
     const navegate = useNavigate();
     const [error, setError] = useState('');
 
-    const {setAuth} = useAuth();
+    const { setAuth } = useAuth();
+
+    const googleLogin = () => {
+        window.open("http://localhost:3000/api/user/google", "_self");
+    }
 
     const loginUser = async (e) => {
         e.preventDefault();
@@ -70,18 +74,18 @@ export const Login = () => {
 
             <div className="flex flex-col items-center justify-between gap-6 px-3 pb-3 md:px-6 md:pb-6">
                 <small className="font-bold">O</small>
-                <Link className="flex w-full p-2 items-center justify-center gap-6 rounded-md shadow-md hover:shadow-none transition-all duration-[.25s]">
+                <button onClick={googleLogin} className="flex w-full p-2 items-center justify-center gap-6 rounded-md shadow-md hover:shadow-none transition-all duration-[.25s]">
                     <FcGoogle />
                     <p className="flex-1 text-center">
                         Continuar con Google
                     </p>
-                </Link>
-                <Link className="flex w-full p-2 items-center justify-center gap-6 rounded-md shadow-md hover:shadow-none transition-all duration-[.25s]">
+                </button>
+                <button className="flex w-full p-2 items-center justify-center gap-6 rounded-md shadow-md hover:shadow-none transition-all duration-[.25s]">
                     <FaFacebook className="text-blue-500" />
                     <p className="flex-1 text-center">
                         Continuar con Facebook
                     </p>
-                </Link>
+                </button>
             </div>
 
         </section>

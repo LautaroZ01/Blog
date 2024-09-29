@@ -1,20 +1,38 @@
 import { Link } from "react-router-dom"
+import { FaUserCog } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
+import { useEffect } from "react";
 
-export const Menu = () => {
-    const style = 'flex gap-2 items-center justify-start p-2'
+export const Menu = ({onMouseLeave = null}) => {
+    const style = 'px-4 py-2 text-sm text-gray-700 hover:bg-bg-300 flex items-center gap-2'
 
     return (
-        <div className="absolute w-44 top-10 right-0 bg-primary-200 p-4 rounded-md shadow-lg flex flex-col gap-2">
-            <Link to='/blog/perfil' className='flex gap-2 items-center justify-start border-b border-bg-200 p-2'>
-                <CgProfile />
-                Ver perfil
-            </Link>
-            <Link to='/user/logout' className={style}>
-                <MdLogout />
-                Cerrar sesion
-            </Link>
+        <div
+            onMouseLeave={onMouseLeave}
+            onClick={onMouseLeave}
+            className="menu-nav absolute right-0 top-10 z-10 w-56 mt-2 origin-top-right bg-bg-200 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="menu-button"
+        >
+            <div className="py-1" role="none">
+                <Link to='/blog/perfil'
+                    href="#profile"
+                    className={style}
+                    role="menuitem"
+                >
+                    <FaUserCog />
+                    Perfil
+                </Link>
+                <Link to='/user/logout'
+                    href="#logout"
+                    className={style}
+                    role="menuitem"
+                >
+                    <MdLogout />
+                    Cerrar sesión
+                </Link>
+            </div>
         </div>
     )
 }
