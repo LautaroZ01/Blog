@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     const checkAuth = async () => {
         try {
-            const request = await fetch(Global.url + 'user/profile', {
+            const request = await fetch(Global.url + 'user/sesion', {
                 method: "GET",
                 credentials: 'include',
                 headers: {

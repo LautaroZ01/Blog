@@ -4,14 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { BtnEdit } from "../UI/Layout/User/BtnEdit";
 import { FaUserAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
+import { FormUser } from "../UI/Layout/Private/User/FormUser";
 
 export const Profile = () => {
+    const [isEdit, setIsEdit] = useState(false)
     const [user, setUser] = useState({});
     const navigate = useNavigate()
+
 
     useEffect(() => {
         getProfile()
     })
+
+    const toggleEdit = () =>{
+        setIsEdit(!isEdit)
+    }
 
     const getProfile = async () => {
         const request = await fetch(Global.url + 'user/profile', {
@@ -50,57 +57,14 @@ export const Profile = () => {
                     <span>{user.email}</span>
                     <span>{user.rol}</span>
                 </div>
-                <BtnEdit />
             </div>
             <div className="flex flex-wrap-reverse md:flex-wrap items-start justify-center gap-4 p-4 rounded-lg shadow-md item-animation">
                 <div className="md:flex-1">
                     <h2 className="text-xl font-bold p-4">Informacion personal</h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 max-w-[800px]">
-                        <div className="flex flex-col gap-2">
-                            <strong className="text-gray-400">
-                                Nombre
-                            </strong>
-                            <p>
-                                {user.username}
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <strong className="text-gray-400">
-                                Apellido
-                            </strong>
-                            <p>
-                                {user.surname}
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <strong className="text-gray-400">
-                                Direccion de correo electronico
-                            </strong>
-                            <p>
-                                {user.email}
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <strong className="text-gray-400">
-                                Fecha de nacimiento
-                            </strong>
-                            <p>
-                                {user.birthdate ? new Date(user.birthdate).toLocaleDateString('es-ES') : 'No tienes fecha de nacimiento'}
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <strong className="text-gray-400">
-                                Ubicacion
-                            </strong>
-                            <p>
-                                {user.address ? user.address : 'No tienes ubicacion'}
-                            </p>
-                        </div>
-                    </div>
+                    <FormUser user={user} isEdit={isEdit} setUser={setUser} setIsEdit={setIsEdit} />
                 </div>
 
-                <BtnEdit />
+                <BtnEdit onClick={toggleEdit} />
 
             </div>
         </section>
