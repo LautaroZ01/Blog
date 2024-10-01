@@ -54,7 +54,7 @@ export const Register = () => {
     }
 
     return (
-        <section className="w-screen md:w-[512px] lg:w-[640px] shadow-lg rounded-b-md md:mt-4 m-6">
+        <section className="w-screen md:w-[512px] lg:w-[640px] shadow-lg rounded-b-md md:mt-4 m-6 p-2">
 
             <h1 className="font-bold text-xl bg-primary-200 text-center p-2 md:py-6 text-white rounded-t-md">
                 Crear una cuenta

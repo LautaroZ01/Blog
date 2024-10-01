@@ -25,6 +25,9 @@ export default {
           300: '#c2baa6', // crema-oscuro
         },
       },
+      backgroundImage: {
+        'fondo-perfil': "url('/Fondos/Fondoperfil.png')",
+      },
     },
   },
   plugins: [],

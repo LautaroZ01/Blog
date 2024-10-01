@@ -31,7 +31,7 @@ export const NavP = ({ user = {} }) => {
                 </li>
 
                 {isMenuVisible && (
-                    <Menu onMouseLeave={hideMenu} />
+                    <Menu user={user} onMouseLeave={hideMenu} />
                 )}
             </ul>
         </nav>

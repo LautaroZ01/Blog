@@ -43,7 +43,7 @@ export const Login = () => {
     }
 
     return (
-        <section className="min-w-screen md:min-w-[512px] m-3 md:px-0 shadow-lg rounded-b-md">
+        <section className="w-screen md:w-[512px] m-3 md:px-0 shadow-lg rounded-b-md p-2">
 
             <h1 className="font-bold text-xl bg-primary-200 text-center py-2 md:p-6 text-white rounded-t-md">
                 Inicio de sesion

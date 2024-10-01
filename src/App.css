@@ -23,8 +23,29 @@
   }
 }
 
+@keyframes inicial-animation {
+  0% {
+    opacity: .4;
+    transform: translateY(12px);
+  }
+
+  50% {
+    opacity: .8;
+    transform: translateY(-12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
 /* Animaciones */
 
 .menu-nav {
   animation: open-animation .25s forwards;
+}
+
+.item-animation {
+  animation: inicial-animation .5s forwards;
 }
