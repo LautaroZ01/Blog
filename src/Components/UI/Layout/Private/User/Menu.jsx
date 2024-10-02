@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { FaUserCog } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
 
@@ -30,14 +29,6 @@ export const Menu = ({ user = {}, onMouseLeave = null }) => {
                             {user.email}
                         </span>
                     </div>
-                </Link>
-                <Link to='/blog/perfil'
-                    href="#profile"
-                    className={`${style} border-t border-bg-300`}
-                    role="menuitem"
-                >
-                    <FaUserCog />
-                    Perfil
                 </Link>
                 <Link to='/user/logout'
                     href="#logout"

@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useForm } from "../../../../../Hooks/useForm";
 import { Global } from "../../../../../Helpers/Global";
+import useAuth from "../../../../../Hooks/useAuth";
 
 
 export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit = null }) => {
     const { form, changed } = useForm({});
+    const [error, setError] = useState('')
+    const { setAuth } = useAuth()
+
     const [isEnable, setIsEnable] = useState(false); // El botón comienza deshabilitado
     const [isFormChanged, setIsFormChanged] = useState(false); // Nuevo estado para verificar cambios en el formulario
 
@@ -38,9 +42,13 @@ export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit 
 
         const data = await request.json()
 
-        if(data.status == 'success'){
+        if (data.status == 'success') {
             setIsEdit(!isEdit)
             setUser(data.user)
+            setAuth(data.user)
+            setError('')
+        } else {
+            setError(data.error)
         }
     }
     return (
@@ -114,6 +122,11 @@ export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit 
                     </p>
                 }
             </div>
+            {error &&
+                <div className="col-span-2 p-2 bg-red-500/10 text-red-500 rounded-md font-bold text-center">
+                    {error}
+                </div>
+            }
             {isEdit &&
                 <button
                     disabled={!isEnable}

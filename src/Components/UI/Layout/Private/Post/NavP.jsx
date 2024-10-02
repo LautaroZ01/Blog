@@ -10,10 +10,6 @@ export const NavP = ({ user = {} }) => {
         setIsMenuVisible(!isMenuVisible);
     };
 
-    const hideMenu = () => {
-        setIsMenuVisible(false);
-    };
-
     return (
         <nav>
             <ul className="flex flex-1 items-center justify-center gap-3 relative">
@@ -31,7 +27,7 @@ export const NavP = ({ user = {} }) => {
                 </li>
 
                 {isMenuVisible && (
-                    <Menu user={user} onMouseLeave={hideMenu} />
+                    <Menu user={user} onMouseLeave={toggleMenu} />
                 )}
             </ul>
         </nav>

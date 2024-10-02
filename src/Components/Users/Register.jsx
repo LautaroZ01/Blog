@@ -45,7 +45,6 @@ export const Register = () => {
                 }
             }
 
-            console.log(data)
         } else {
             setError(validationFrom)
         }

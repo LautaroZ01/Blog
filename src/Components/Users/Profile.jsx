@@ -14,7 +14,7 @@ export const Profile = () => {
 
     useEffect(() => {
         getProfile()
-    })
+    }, [])
 
     const toggleEdit = () =>{
         setIsEdit(!isEdit)
@@ -31,7 +31,6 @@ export const Profile = () => {
         if (data.status == 'success') {
             setUser(data.user)
         } else {
-            console.log(data.error)
             navigate('/')
         }
     }

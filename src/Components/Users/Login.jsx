@@ -51,10 +51,10 @@ export const Login = () => {
 
             <form className="p-3 md:p-6 flex flex-col gap-4" onSubmit={loginUser}>
                 <div>
-                    <label htmlFor="username">Nombre de usuario</label>
+                    <label htmlFor="email">Correo electronico</label>
                     <div className="flex items-center justify-center border-b border-primary-200 py-2">
                         <FaUser className="text-gray-500" />
-                        <input type="text" name="username" required autoComplete="false" placeholder="Nombre o correo electronico" id="username" className="flex-1 focus:outline-none ml-2 bg-transparent rounded-md" onChange={changed} />
+                        <input type="text" name="email" required autoComplete="false" placeholder="Nombre o correo electronico" id="email" className="flex-1 focus:outline-none ml-2 bg-transparent rounded-md" onChange={changed} />
                     </div>
                 </div>
 
