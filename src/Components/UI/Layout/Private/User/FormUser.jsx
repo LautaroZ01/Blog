@@ -117,7 +117,7 @@ export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit 
                         <option value={user.address}>{user.address}</option>
                     </select>
                     :
-                    <p className="bg-transparent p-2 rounded-md">
+                    <p className="bg-transparent p-2 rounded-md capitalize">
                         {user.address || ''}
                     </p>
                 }

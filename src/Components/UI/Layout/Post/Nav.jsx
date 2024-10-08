@@ -1,4 +1,4 @@
-import { Buttom } from "../../Utils/Buttom"
+import { Button } from "../../Utils/Button"
 
 export const Nav = () => {
 
@@ -6,10 +6,10 @@ export const Nav = () => {
         <nav>
             <ul className="flex flex-1 items-center justify-center gap-3 p-2">
                 <li>
-                    <Buttom path={"/user"} isButton={false} type={2}>Iniciar Sesion</Buttom>
+                    <Button path={"/user"} isButton={false} type={2}>Iniciar Sesion</Button>
                 </li>
                 <li>
-                    <Buttom path={"/user/registro"} isButton={false} type={1}>Crear una Cuanta</Buttom>
+                    <Button path={"/user/registro"} isButton={false} type={1}>Crear una Cuanta</Button>
                 </li>
             </ul>
         </nav>

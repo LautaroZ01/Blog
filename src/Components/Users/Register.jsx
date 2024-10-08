@@ -7,18 +7,17 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { useForm } from "../../Hooks/useForm";
 import { Global } from "../../Helpers/Global";
 import { validation } from "../../Helpers/Validation";
+import { addError } from "../../Helpers/Errors";
 import { useState } from "react";
 
 export const Register = () => {
-    const [error, setError] = useState([]);
-    const [error2, setError2] = useState('');
     const navegate = useNavigate()
     const { form, changed } = useForm({});
+    const [error, setError] = useState([])
 
     const saveUser = async (e) => {
         e.preventDefault();
-        setError([])
-        setError2('')
+        setError([]);
 
         let newUser = form;
         let validationFrom = validation(newUser)
@@ -38,17 +37,15 @@ export const Register = () => {
             if (data.status == 'success') {
                 navegate('/user')
             } else {
-                if (Array.isArray(data.error)) {
-                    setError(data.error)
-                } else {
-                    setError2(data.error)
-                }
+                setError(addError(data.error))
+
             }
 
         } else {
-            setError(validationFrom)
+            setError(addError(validationFrom))
         }
 
+        console.log(error)
 
     }
 
@@ -117,16 +114,15 @@ export const Register = () => {
                         </div>
                     </div>
                 </div>
-
-                {error.length !== 0 || error2 !== '' &&
-                    <ul className="p-2 bg-red-500/10 text-red-500 rounded-md font-bold text-sm">
-                        {error.length !== 0 && error.map((err, index) => (
-                            <li key={index} className="mb-2 list-disc list-inside">{err.message}</li>
+                {
+                    error.length > 0 &&
+                    <ul className="p-2 bg-red-500/10 text-red-500 rounded-md font-bold text-sm text-center">
+                        {error.map((err, index) => (
+                            <li className="list-outside" key={index}>{err}</li>
                         ))}
-                        {error2 !== '' && <li className="mb-2 list-disc list-inside">{error2}</li>}
                     </ul>
-                }
 
+                }
                 <button className="bg-primary-200 px-4 py-2 rounded-md text-white mt-4 border border-transparent hover:bg-transparent hover:border-primary-200 hover:text-black hover:shadow-md transition-all duration-[.25s]">Registrarse</button>
                 <Link to='/user' className="text-center text-primary-200">¿ Ya tienes una cuenta ?</Link>
             </form>
