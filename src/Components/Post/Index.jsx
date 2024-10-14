@@ -1,5 +1,11 @@
+import { Posts } from "./Posts"
+import { Welcome } from "./Welcome"
+
 export const Index = () => {
     return (
-        <div>Index</div>
+        <>
+            <Welcome />
+            <Posts />
+        </>
     )
 }

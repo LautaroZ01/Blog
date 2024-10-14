@@ -45,7 +45,7 @@ export const Profile = () => {
                     ) : (
                         <FaUserAlt className="w-24 h-24 rounded-full" />
                     )}
-                    <button className="absolute bottom-0 right-0 bg-bg-200/50 rounded-full p-2 hover:bg-bg-200 transition-all duration-[.25s]">
+                    <button className="absolute bottom-0 right-0 bg-accent-300 rounded-full p-2 hover:bg-accent-100 transition-all duration-[.25s]">
                         <FiEdit />
                     </button>
                 </span>

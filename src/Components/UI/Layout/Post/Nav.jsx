@@ -9,7 +9,7 @@ export const Nav = () => {
                     <Button path={"/user"} isButton={false} type={2}>Iniciar Sesion</Button>
                 </li>
                 <li>
-                    <Button path={"/user/registro"} isButton={false} type={1}>Crear una Cuanta</Button>
+                    <Button path={"/user/registro"} isButton={false} active={true}>Crear una Cuanta</Button>
                 </li>
             </ul>
         </nav>

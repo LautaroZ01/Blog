@@ -7,9 +7,9 @@ export const Home = () => {
         <>
             <Header />
 
-            <main>
+            <>
                 <Outlet />
-            </main>
+            </>
 
             <Footer />
         </>

@@ -15,7 +15,7 @@ export const NavP = ({ user = {} }) => {
             <ul className="flex flex-1 items-center justify-center gap-3 relative">
                 <li>
                     <Button isButton={true} onClick={toggleMenu}>
-                        {user.photo !== 'https://user.svg' ? (
+                        {user.photo !== 'https://user.svg' && user.photo != null ? (
                             <img src={user.photo} alt={user.username} className="w-5 h-5 rounded-full" />
                         ) : (
                             <FaRegUser />

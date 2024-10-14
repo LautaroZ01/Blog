@@ -52,7 +52,7 @@ export const Register = () => {
     return (
         <section className="w-screen md:w-[512px] lg:w-[640px] shadow-lg rounded-b-md md:mt-4 m-6 p-2">
 
-            <h1 className="font-bold text-xl bg-primary-200 text-center p-2 md:py-6 text-white rounded-t-md">
+            <h1 className="font-bold text-xl bg-primary-500 text-center p-2 md:py-6 text-white rounded-t-md">
                 Crear una cuenta
             </h1>
 
@@ -60,7 +60,7 @@ export const Register = () => {
                 <div className="flex flex-col w-full md:flex-row md:gap-2 items-center">
                     <div className="w-full flex-1">
                         <label htmlFor="name">Nombre</label>
-                        <div className="flex items-center justify-center border-b border-primary-200 py-2">
+                        <div className="flex items-center justify-center border-b border-primary-500 py-2">
                             <FaUser className="text-gray-500" />
                             <input type="text" required name="username" autoComplete="false" placeholder="Nombre de usuario" id="name" className="flex-1 focus:outline-none ml-2 bg-transparent" onChange={changed} />
                         </div>
@@ -68,25 +68,25 @@ export const Register = () => {
 
                     <div className="w-full flex-1">
                         <label htmlFor="surname">Apellido</label>
-                        <div className="flex items-center justify-center border-b border-primary-200 py-2">
+                        <div className="flex items-center justify-center border-b border-primary-500 py-2">
                             <input type="text" required name="surname" autoComplete="false" id="surname" className="flex-1 focus:outline-none ml-2 bg-transparent" onChange={changed} />
                         </div>
                     </div>
                 </div>
 
                 <label htmlFor="email">Correo electronico</label>
-                <div className="flex items-center justify-center border-b border-primary-200 py-2">
+                <div className="flex items-center justify-center border-b border-primary-500 py-2">
                     <MdEmail className="text-gray-500" />
                     <input type="email" required name="email" autoComplete="false" placeholder="ejemplo@gmail.com" id="email" className="flex-1 focus:outline-none ml-4 bg-transparent" onChange={changed} />
                 </div>
 
                 <label htmlFor="password">Contraseña</label>
-                <div className="flex items-center justify-center border-b border-primary-200 py-2">
+                <div className="flex items-center justify-center border-b border-primary-500 py-2">
                     <FaLock className="text-gray-500" />
                     <input type="password" required name="password" id="password" className="flex-1 focus:outline-none ml-2 bg-transparent" onChange={changed} />
                 </div>
                 <label htmlFor="confirmPassword">Confirme constraseña</label>
-                <div className="flex items-center justify-center border-b border-primary-200 py-2">
+                <div className="flex items-center justify-center border-b border-primary-500 py-2">
                     <RiLockPasswordLine className="text-gray-500" />
                     <input type="password" required name="confirmPassword" id="confirmPassword" className="flex-1 focus:outline-none ml-2 bg-transparent" onChange={changed} />
                 </div>
@@ -94,7 +94,7 @@ export const Register = () => {
                 <div className="flex flex-col items-center md:flex-row md:gap-3">
                     <div className="w-full flex-1">
                         <label htmlFor="birthdate">Fecha de nacimiento</label>
-                        <div className="flex items-center justify-center border-b border-primary-200 py-2">
+                        <div className="flex items-center justify-center border-b border-primary-500 py-2">
                             <MdOutlineCalendarToday className="text-gray-500" />
                             <input type="date" name="birthdate" id="birthdate" className="flex-1 focus:outline-none ml-2 bg-transparent" onChange={changed} />
                         </div>
@@ -102,7 +102,7 @@ export const Register = () => {
 
                     <div className="w-full flex-1">
                         <label htmlFor="country">País</label>
-                        <div className="flex items-center justify-center border-b border-primary-200 py-2">
+                        <div className="flex items-center justify-center border-b border-primary-500 py-2">
                             <FaUser className="text-gray-500" />
                             <select name="address" id="country" className="w-full bg-transparent ml-4 focus:outline-none" onChange={changed}>
                                 <option value="">Seleccione un pais</option>
@@ -123,8 +123,8 @@ export const Register = () => {
                     </ul>
 
                 }
-                <button className="bg-primary-200 px-4 py-2 rounded-md text-white mt-4 border border-transparent hover:bg-transparent hover:border-primary-200 hover:text-black hover:shadow-md transition-all duration-[.25s]">Registrarse</button>
-                <Link to='/user' className="text-center text-primary-200">¿ Ya tienes una cuenta ?</Link>
+                <button className="bg-primary-500 px-4 py-2 rounded-md text-white mt-4 border border-transparent hover:bg-transparent hover:border-primary-500 hover:text-black hover:shadow-md transition-all duration-[.25s]">Registrarse</button>
+                <Link to='/user' className="text-center text-accent-600">¿ Ya tienes una cuenta ?</Link>
             </form>
         </section>
     )

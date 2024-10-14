@@ -12,6 +12,7 @@ import { HomePrivate } from "../Components/Private/HomePrivate"
 import { Index } from "../Components/Post/Index"
 import { Logout } from "../Components/Users/Logout"
 import PrivateRoute from "./PrivateRoutes"
+import { Post } from "../Components/Post/Post"
 
 export const Routing = () => {
     return (
@@ -20,6 +21,7 @@ export const Routing = () => {
                 <Routes>
                     <Route path="/" element={<Home />} >
                         <Route index element={<Index />} />
+                        <Route path="post/:id" element={<Post />} />
                         <Route path="/blog" element={<PrivateRoute> <HomePrivate /> </PrivateRoute>}>
                             <Route path="perfil" element={<Profile />} />
                         </Route>
