@@ -54,7 +54,7 @@ export const Login = () => {
                     <label htmlFor="email">Correo electronico</label>
                     <div className="flex items-center justify-center border-b border-primary-500 py-2">
                         <FaUser className="text-gray-500" />
-                        <input type="text" name="email" required autoComplete="false" placeholder="Nombre o correo electronico" id="email" className="flex-1 focus:outline-none ml-2 bg-transparent rounded-md" onChange={changed} />
+                        <input type="text" name="email" required autoComplete="false" placeholder="ejemplo@gmail.com" id="email" className="flex-1 focus:outline-none ml-2 bg-transparent rounded-md" onChange={changed} />
                     </div>
                 </div>
 

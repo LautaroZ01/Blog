@@ -9,9 +9,10 @@ import { HomeDashboard } from "../Components/Dashboard/HomeDashboard"
 import { Profile } from "../Components/Users/Profile"
 import { NotFound } from "../Components/NotFound"
 import { HomePrivate } from "../Components/Private/HomePrivate"
-import { Index } from "../Components/Post/Index"
 import { Logout } from "../Components/Users/Logout"
 import PrivateRoute from "./PrivateRoutes"
+import { Index } from "../Components/Home/Index"
+import { IndexPost } from "../Components/Post/IndexPost"
 import { Post } from "../Components/Post/Post"
 
 export const Routing = () => {
@@ -21,7 +22,9 @@ export const Routing = () => {
                 <Routes>
                     <Route path="/" element={<Home />} >
                         <Route index element={<Index />} />
-                        <Route path="post/:id" element={<Post />} />
+                        <Route path="/post" element={<IndexPost />} />
+                        <Route path="/post/:id" element={<IndexPost />} />
+
                         <Route path="/blog" element={<PrivateRoute> <HomePrivate /> </PrivateRoute>}>
                             <Route path="perfil" element={<Profile />} />
                         </Route>

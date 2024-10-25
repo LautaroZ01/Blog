@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Menu } from "../User/Menu";
-import { FaRegUser } from "react-icons/fa";
 import { Button } from "../../../Utils/Button";
+import { Avatar } from "../../User/Avatar";
+import { FaUserAlt } from "react-icons/fa";
 
 export const NavP = ({ user = {} }) => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -12,13 +13,13 @@ export const NavP = ({ user = {} }) => {
 
     return (
         <nav>
-            <ul className="flex flex-1 items-center justify-center gap-3 relative">
+            <ul className="flex flex-1 items-center justify-center gap-4 relative p-2">
                 <li>
                     <Button isButton={true} onClick={toggleMenu}>
-                        {user.photo !== 'https://user.svg' && user.photo != null ? (
-                            <img src={user.photo} alt={user.username} className="w-5 h-5 rounded-full" />
+                        {user.photo && user.photo !== 'https://user.svg' ? (
+                            <img src={user.photo} alt={user.username} className='w-6 h-6 rounded-full aspect-square' />
                         ) : (
-                            <FaRegUser />
+                            <FaUserAlt className='w-6 h-6 rounded-full aspect-square' />
                         )}
                         <p className="capitalize">
                             {user.username}

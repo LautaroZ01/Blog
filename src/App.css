@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 * {
   font-family: "Inria Sans", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 /* Animaciones */
@@ -27,17 +30,37 @@
 @keyframes inicial-animation {
   0% {
     opacity: .4;
+    z-index: 0;
     transform: translateY(12px);
   }
 
   50% {
     opacity: .8;
+    z-index: 0;
     transform: translateY(-12px);
   }
 
   100% {
     opacity: 1;
+    z-index: 0;
     transform: translateY(0px);
+  }
+}
+
+@keyframes like-animation {
+  0% {
+    transform: translateY(-5px) rotate(-20deg);
+    /* Combina ambas transformaciones */
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(-40deg);
+    /* Combina ambas transformaciones */
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    /* Combina ambas transformaciones */
   }
 }
 
@@ -49,4 +72,26 @@
 
 .item-animation {
   animation: inicial-animation .5s forwards;
+}
+
+.like-animation {
+  animation: like-animation .5s forwards;
+
+}
+
+/* Tipografia */
+.h-text {
+  font-family: "Oswald", sans-serif;
+}
+
+.p-text {
+  font-family: "Inter", sans-serif;
+}
+
+.menu-coment {
+  position: absolute;
+  /* o fixed, dependiendo de tu diseño */
+  z-index: 10;
+  /* o cualquier valor mayor que el del contenedor */
+  /* Otros estilos para el menú */
 }

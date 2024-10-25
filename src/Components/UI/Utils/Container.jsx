@@ -1,7 +1,13 @@
-export const Container = ({ children, active = true }) => {
+import PropTypes from "prop-types";
+
+export const Container = ({ children }) => {
     return (
-        <section className={active ? 'bg-bg-100' : ''}>
+        <section className="bg-bg-100">
             {children}
         </section>
     )
 }
+
+Container.propTypes = {
+    children: PropTypes.node.isRequired
+};

@@ -12,7 +12,7 @@ export const Button = ({
 }) => {
   // Clases base comunes para ambos (Link o Button)
   const baseClasses =
-    "p-2 px-4 rounded-md transition-all duration-250 flex items-center justify-center gap-2 border";
+    "py-2 px-4 rounded-md transition-all duration-250 flex items-center justify-center gap-2 border";
 
   // Estilos por tipo
   const types = {

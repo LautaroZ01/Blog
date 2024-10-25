@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
-export const Badge = ({ children = '', path = '/', isButton = true, type = 1, onClick = null, extraClass = '', isBig = true }) => {
+export const Badge = ({ children, path = '/', isButton = true, type = 1, onClick = null, extraClass = '', isBig = true }) => {
     // Clases base comunes para ambos (Link o Button)
     const baseClasses = 'border flex items-center gap-2 p-1 px-2 rounded-md font-bold transition-all duration-[.25s]';
 

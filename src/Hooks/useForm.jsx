@@ -3,8 +3,8 @@ import { useState } from 'react'
 export const useForm = (initalObj = {}) => {
     const [form, setForm] = useState(initalObj);
 
-    const changed = ({target}) => {
-        const {name, value} = target;
+    const changed = ({ target }) => {
+        const { name, value } = target;
 
         setForm({
             ...form,
@@ -14,6 +14,7 @@ export const useForm = (initalObj = {}) => {
 
     return {
         form,
-        changed
+        changed,
+        setForm
     }
 }

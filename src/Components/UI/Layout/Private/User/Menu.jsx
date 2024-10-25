@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { MdLogout } from "react-icons/md";
-import { FaUserAlt } from "react-icons/fa";
+import PropTypes from "prop-types";
 
 export const Menu = ({ user = {}, onMouseLeave = null }) => {
     const style = 'px-4 py-2 text-sm text-text-600 hover:bg-bg-200 flex items-center gap-2'
@@ -16,11 +16,6 @@ export const Menu = ({ user = {}, onMouseLeave = null }) => {
         >
             <div className="py-1" role="none">
                 <Link to='/blog/perfil' className={`${style}`}>
-                    {user.photo !== 'https://user.svg' ? (
-                        <img src={user.photo} alt={user.username} className="w-6 h-6 rounded-full" />
-                    ) : (
-                        <FaUserAlt className="w-6 h-6 rounded-full" />
-                    )}
                     <div className="flex flex-col">
                         <span className="font-bold">
                             {user.username}
@@ -42,3 +37,8 @@ export const Menu = ({ user = {}, onMouseLeave = null }) => {
         </div>
     )
 }
+
+Menu.propTypes = {
+    user: PropTypes.object.isRequired,
+    onMouseLeave: PropTypes.func
+  };

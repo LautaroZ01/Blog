@@ -31,7 +31,7 @@ export const Posts = () => {
 
         } catch (error) {
             setError(addError('Algo salio mal'))
-            console.log('Algo salio mal')
+            console.log('Algo salio mal', error)
         }
     }
 
@@ -40,7 +40,7 @@ export const Posts = () => {
             <section className="max-w-[80%] m-auto py-10 md:px-2">
                 <h1 className="text-2xl font-bold">Algunos de mis articulos</h1>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-x-4 py-4 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-4 py-4 items-start">
                     {error.length > 0 ? (
                         <div className="col-span-2">No hay artículos disponibles</div>
                     ) : (

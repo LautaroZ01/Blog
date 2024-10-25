@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "../../../../../Hooks/useForm";
 import { Global } from "../../../../../Helpers/Global";
 import useAuth from "../../../../../Hooks/useAuth";
+import PropTypes from "prop-types";
 
 
 export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit = null }) => {
@@ -139,3 +140,11 @@ export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit 
         </form>
     )
 }
+
+FormUser.propTypes = {
+  user: PropTypes.object.isRequired,
+  isButton: PropTypes.bool,
+  isEdit: PropTypes.bool,
+  setUser: PropTypes.func,
+  setIsEdit: PropTypes.func,
+};

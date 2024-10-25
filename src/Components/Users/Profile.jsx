@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import { Global } from "../../Helpers/Global";
 import { useNavigate } from "react-router-dom";
 import { BtnEdit } from "../UI/Layout/User/BtnEdit";
-import { FaUserAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { FormUser } from "../UI/Layout/Private/User/FormUser";
+import { Avatar } from "../UI/Layout/User/Avatar";
 
 export const Profile = () => {
     const [isEdit, setIsEdit] = useState(false)
@@ -40,11 +40,7 @@ export const Profile = () => {
             <h1 className="text-2xl font-bold p-4">Mi perfil</h1>
             <div className="flex flex-wrap items-start justify-center gap-4 p-4 rounded-lg shadow-md mb-3 item-animation">
                 <span className="relative">
-                    {user.photo !== 'https://user.svg' ? (
-                        <img src={user.photo} alt={user.username} className="w-24 h-24 rounded-full" />
-                    ) : (
-                        <FaUserAlt className="w-24 h-24 rounded-full" />
-                    )}
+                    <Avatar photo={user.photo} alt={user.username} size={'24'} />
                     <button className="absolute bottom-0 right-0 bg-accent-300 rounded-full p-2 hover:bg-accent-100 transition-all duration-[.25s]">
                         <FiEdit />
                     </button>
