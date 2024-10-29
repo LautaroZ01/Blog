@@ -17,7 +17,7 @@ export const NavP = ({ user = {} }) => {
                 <li>
                     <Button isButton={true} onClick={toggleMenu}>
                         {user.photo && user.photo !== 'https://user.svg' ? (
-                            <img src={user.photo} alt={user.username} className='w-6 h-6 rounded-full aspect-square' />
+                            <img src={user.photo} alt={user.username} className='w-6 h-6 rounded-full aspect-square object-cover' />
                         ) : (
                             <FaUserAlt className='w-6 h-6 rounded-full aspect-square' />
                         )}

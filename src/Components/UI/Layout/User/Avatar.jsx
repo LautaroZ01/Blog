@@ -2,7 +2,7 @@ import { FaUserAlt } from "react-icons/fa"
 import PropTypes from "prop-types";
 
 export const Avatar = ({ photo = '', alt = '', size = '4' }) => {
-    const className = `w-${size} h-${size} rounded-full aspect-square`
+    const className = `w-${size} h-${size} rounded-full aspect-square object-cover`
 
     return (
         <>

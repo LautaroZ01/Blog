@@ -31,7 +31,7 @@ export const Welcome = () => {
                     </Badge>
                 </div>
                 <div className='flex gap-4'>
-                    <Button>Ver articulos</Button>
+                    <Button path={'/post'}>Ver articulos</Button>
                     <Button type={2}>Contactar</Button>
                 </div>
             </section>
