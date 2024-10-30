@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Menu } from "../User/Menu";
 import { Button } from "../../../Utils/Button";
-import { Avatar } from "../../User/Avatar";
 import { FaUserAlt } from "react-icons/fa";
 
 export const NavP = ({ user = {} }) => {
