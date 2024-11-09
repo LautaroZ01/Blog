@@ -87,11 +87,3 @@
 .p-text {
   font-family: "Inter", sans-serif;
 }
-
-.menu-coment {
-  position: absolute;
-  /* o fixed, dependiendo de tu diseño */
-  z-index: 10;
-  /* o cualquier valor mayor que el del contenedor */
-  /* Otros estilos para el menú */
-}

@@ -6,6 +6,9 @@ import { FaCommentAlt } from "react-icons/fa";
 import { Badge } from "../../Utils/Badge";
 import { Like } from "../User/Like";
 
+import parse from 'html-react-parser';
+
+
 export const ItemPost = ({ post = {}, isRow = true }) => {
   const date = formatearFecha(post.created_at);
 
@@ -34,9 +37,9 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
               </h3>
             </Link>
 
-            <p className="p-text text-base text-balance line-clamp-3 text-text-500">
-              {post.content}
-            </p>
+            <div className="p-text text-base text-balance line-clamp-3 text-text-500">
+              {parse(post.content)}
+            </div>
           </div>
 
           <div className="flex gap-2 justify-between items-center pt-4 border-t">
@@ -89,9 +92,9 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
           </div>
 
           <div className="flex-1 min-h-52">
-            <p className="p-text text-base text-balance line-clamp-5 text-text-500">
-              {post.content}
-            </p>
+            <div className="p-text text-base text-balance line-clamp-5 text-text-500">
+              {parse(post.content)}
+            </div>
           </div>
 
           <div className="mt-4 flex items-center justify-between">

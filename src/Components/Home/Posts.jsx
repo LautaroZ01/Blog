@@ -14,7 +14,7 @@ export const Posts = () => {
 
     const getPosts = async () => {
         try {
-            const request = await fetch(Global.url + 'post', {
+            const request = await fetch(Global.url + 'post?limit=3', {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",

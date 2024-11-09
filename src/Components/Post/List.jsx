@@ -5,6 +5,9 @@ import { formatearFecha } from "../../Helpers/DateParth";
 import { Button } from "../UI/Utils/Button";
 import PropTypes from "prop-types";
 
+import parse from 'html-react-parser';
+
+
 export const List = ({ posts = [] }) => {
 
     return (
@@ -32,9 +35,9 @@ export const List = ({ posts = [] }) => {
                                 <Link to={'/post/' + post.id} className="hover:text-text-500 transition-colors duration-[.25s]" >
                                     <h3 className="h-text text-lg font-extrabold">{post.title}</h3>
                                 </Link>
-                                <p className="p-text text-base text-balance line-clamp-3 text-text-500">
-                                    {post.content}
-                                </p>
+                                <div className="p-text text-base text-balance line-clamp-3 text-text-500">
+                                    {parse(post.content)}
+                                </div>
                             </div>
                             <div className="flex justify-end p-2">
                                 <Button path={'/post/' + post.id}>
