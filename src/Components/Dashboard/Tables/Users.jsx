@@ -51,7 +51,7 @@ export const Users = () => {
 
 
     return (
-        <div className="flex flex-col">
+        <section className="flex flex-col">
             <div className="overflow-x-auto">
                 <div className="min-w-full inline-block align-middle">
                     <div className="overflow-hidden rounded-md">
@@ -98,6 +98,6 @@ export const Users = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };

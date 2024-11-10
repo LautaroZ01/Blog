@@ -18,6 +18,8 @@ import { IndexAuthor } from "../Components/Post/Author/IndexAuthor"
 import { Create } from "../Components/Post/Author/Create"
 import { Users } from "../Components/Dashboard/Tables/Users"
 import { AdminRoutes } from "./AdminRoutes"
+import { Categories } from "../Components/Dashboard/Tables/Categories"
+import { Roles } from "../Components/Dashboard/Tables/Roles"
 
 export const Routing = () => {
     return (
@@ -47,6 +49,8 @@ export const Routing = () => {
                     <Route path="/dashboard" element={<PrivateRoute> <HomeDashboard /> </PrivateRoute>}>
                         <Route index element={<Dashboard />} />
                         <Route path="users" element={<AdminRoutes ><Users /></AdminRoutes>} />
+                        <Route path="categories" element={<AdminRoutes ><Categories /></AdminRoutes>} />
+                        <Route path="roles" element={<AdminRoutes ><Roles /></AdminRoutes>} />
                     </Route>
 
                     <Route path='*' element={<NotFound />} />
