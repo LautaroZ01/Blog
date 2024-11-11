@@ -6,8 +6,8 @@ import { useDropzone } from 'react-dropzone';
 import { States } from '../../UI/Layout/Post/Author/States';
 import { Global } from '../../../Helpers/Global';
 
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { Button } from '../../UI/Utils/Button';
 
 export const Create = () => {

@@ -38,7 +38,7 @@ export const Posts = () => {
     return (
         <Container>
             <section className="max-w-[80%] m-auto py-10 md:px-2">
-                <h1 className="text-2xl font-bold">Algunos de mis articulos</h1>
+                <h1 className="text-2xl font-bold text-accent-500">Algunos de mis articulos</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-4 py-4 items-start">
                     {error.length > 0 ? (
