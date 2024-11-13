@@ -46,7 +46,7 @@ export const Profile = () => {
             <h1 className="text-2xl font-bold p-4">Mi perfil</h1>
             <div className="flex flex-wrap items-start justify-center gap-4 p-4 rounded-lg shadow-md mb-3 item-animation">
                 <span className="relative">
-                    <Avatar photo={user.photo} alt={user.username} size={"24"} />
+                    <Avatar photo={user.photo} alt={user.username} size={'24'} />
                     <button
                         className="absolute bottom-0 right-0 bg-accent-300 rounded-full p-2 hover:bg-accent-100 transition-all duration-[.25s]"
                         onClick={toggleUploadPopup}

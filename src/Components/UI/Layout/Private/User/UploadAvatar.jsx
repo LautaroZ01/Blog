@@ -12,7 +12,7 @@ export const UploadAvatar = ({ setUser = null, toggleUploadPopup = null }) => {
     const onDrop = useCallback(acceptedFiles => {
         const file = acceptedFiles[0];
         if (file) {
-            setPreview(URL.createObjectURL(file)); // Genera una URL para la previsualización
+            setPreview(URL.createObjectURL(file));
         }
     }, []);
 

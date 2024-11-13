@@ -6,13 +6,18 @@ import { FaCommentAlt } from "react-icons/fa";
 import { Badge } from "../../Utils/Badge";
 import { Like } from "../User/Like";
 
+import parse from 'html-react-parser';
+import { BtnEdit } from "./Author/BtnEdit";
+
+
 export const ItemPost = ({ post = {}, isRow = true }) => {
   const date = formatearFecha(post.created_at);
 
   if (isRow) {
     return (
-      <article className="row-start-2 col-span-3 md:col-span-1 rounded-md shadow-sm flex flex-col overflow-hidden bg-white">
-        <Link to={"/post/" + post.id} className="w-full flex-shrink-0">
+      <article className="row-start-2 col-span-3 md:col-span-1 rounded-md shadow-sm flex flex-col overflow-hidden bg-white ">
+        <Link to={"/post/" + post.id} className="w-full flex-shrink-0 group relative">
+          <BtnEdit id={post.id} />
           <img
             src={post.image_url}
             alt={post.title}
@@ -34,9 +39,9 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
               </h3>
             </Link>
 
-            <p className="p-text text-base text-balance line-clamp-3 text-text-500">
-              {post.content}
-            </p>
+            <div className="p-text text-base text-balance line-clamp-3 text-text-500">
+              {parse(post.content)}
+            </div>
           </div>
 
           <div className="flex gap-2 justify-between items-center pt-4 border-t">
@@ -56,11 +61,12 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
     );
   } else {
     return (
-      <article className="col-span-3 lg:flex gap-2 lg:max-h-[550px] rounded-md shadow bg-white">
+      <article className="col-span-3 lg:flex gap-2 lg:max-h-[550px] rounded-md shadow bg-white ">
         <Link
           to={"/post/" + post.id}
-          className="w-full lg:w-[45%] flex-shrink-0 relative"
+          className="w-full lg:w-[45%] flex-shrink-0 relative group"
         >
+          <BtnEdit id={post.id} />
           <img
             src={post.image_url}
             alt={post.title}
@@ -89,9 +95,9 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
           </div>
 
           <div className="flex-1 min-h-52">
-            <p className="p-text text-base text-balance line-clamp-5 text-text-500">
-              {post.content}
-            </p>
+            <div className="p-text text-base text-balance line-clamp-5 text-text-500">
+              {parse(post.content)}
+            </div>
           </div>
 
           <div className="mt-4 flex items-center justify-between">

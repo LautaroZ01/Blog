@@ -41,7 +41,7 @@ export const Sidebar = ({ search = {}, searcher = null, searcherId = null }) => 
                 </form>
             </div>
             <div className="border-b border-b-text-300">
-                <h3 className="text-lg font-bold ">Categorías</h3>
+                <h3 className="text-lg font-bold text-accent-500">Categorías</h3>
                 <form className="p-2">
                     {categories && categories.map(category => (
                         <div key={category.id} className="flex items-center gap-2">

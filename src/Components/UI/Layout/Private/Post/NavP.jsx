@@ -2,9 +2,14 @@ import { useState } from "react";
 import { Menu } from "../User/Menu";
 import { Button } from "../../../Utils/Button";
 import { FaUserAlt } from "react-icons/fa";
+import useAuth from "../../../../../Hooks/useAuth";
+import { MdOutlinePostAdd } from "react-icons/md";
+
+import PropTypes from "prop-types";
 
 export const NavP = ({ user = {} }) => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
+    const { auth } = useAuth();
 
     const toggleMenu = () => {
         setIsMenuVisible(!isMenuVisible);
@@ -13,6 +18,15 @@ export const NavP = ({ user = {} }) => {
     return (
         <nav>
             <ul className="flex flex-1 items-center justify-center gap-4 relative p-2">
+                {auth && auth.rol != 'Usuario' &&
+                    <li>
+                        <Button path="/escritor/crear" type={2}>
+                            <MdOutlinePostAdd className="w-5 h-6" />
+                            Crear
+                        </Button>
+                    </li>
+                }
+
                 <li>
                     <Button isButton={true} onClick={toggleMenu}>
                         {user.photo && user.photo !== 'https://user.svg' ? (
@@ -32,4 +46,8 @@ export const NavP = ({ user = {} }) => {
             </ul>
         </nav>
     );
+};
+
+NavP.propTypes = {
+    user: PropTypes.object.isRequired
 };

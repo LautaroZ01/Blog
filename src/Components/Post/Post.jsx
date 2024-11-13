@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Badge } from "../UI/Utils/Badge";
-import { FaCommentAlt, FaUserAlt } from "react-icons/fa";
+import { FaCommentAlt } from "react-icons/fa";
 import { Like } from "../UI/Layout/User/Like";
 import { formatearFecha } from "../../Helpers/DateParth";
 import { LuDot } from "react-icons/lu";
@@ -11,6 +11,9 @@ import { useEffect, useState } from "react";
 import { ArrowBack } from "../UI/Utils/ArrowBack";
 import { Avatar } from "../UI/Layout/User/Avatar";
 import { List } from "./Comments/List";
+
+import parse from 'html-react-parser';
+import { BtnEdit } from "../UI/Layout/Post/Author/BtnEdit";
 
 export const Post = ({ setImagePost = () => { } }) => {
   const { id } = useParams();
@@ -36,7 +39,11 @@ export const Post = ({ setImagePost = () => { } }) => {
 
     if (data.status == "success") {
       setPost(data.post);
-      setImagePost({ fondo: data.post.image_url, alt: data.post.title });
+
+      if (data.post.images && data.post.images[1]) {
+        setImagePost({ fondo: data.post.images[1].url, alt: data.post.title });
+      }
+
       setLoading(false)
     } else {
       setLoading(false)
@@ -68,7 +75,7 @@ export const Post = ({ setImagePost = () => { } }) => {
 
         </div>
         <div className="flex flex-col gap-2 p-2 items-center">
-          <h1 className="h-text text-3xl font-extrabold">{post.title}</h1>
+          <h1 className="h-text text-3xl font-extrabold ">{post.title}</h1>
           <div className="flex gap-2 items-center">
             <small className="text-text-400">Creado el {date}</small>
             <LuDot className="text-text-400" />
@@ -79,15 +86,22 @@ export const Post = ({ setImagePost = () => { } }) => {
           </div>
         </div>
       </div>
+      {post.images &&
+        <div className="relative group">
+          <img
+            src={post.images && post.images[0].url}
+            alt={post.title}
+            className="w-full h-full object-cover shadow-md rounded-md aspect-video"
+          />
+          <BtnEdit id={post.id} />
+        </div>
 
-      <img
-        src={post.image_url}
-        alt={post.title}
-        className="w-full h-full object-cover shadow-md rounded-md aspect-video"
-      />
+      }
 
       <div className="max-w-[75ch] mx-auto py-6 p-2">
-        <p className="p-text text-base text-balance text-text-500">{post.content}</p>
+        <div className="p-text text-base text-balance text-text-500">
+          {parse(post.content)}
+        </div>
       </div>
 
       <List idPost={post.id} />

@@ -17,8 +17,8 @@ export const Button = ({
   // Estilos por tipo
   const types = {
     1: "border-transparent shadow-md bg-primary-500 text-white hover:border-primary-500 hover:bg-transparent hover:text-black",
-    2: "border-primary-500 shadow-inner hover:border-transparent hover:bg-primary-500 hover:text-white",
-    3: "border-transparent hover:bg-primary-500 hover:text-black",
+    2: "border-primary-500 text-primary-800 shadow-inner hover:border-transparent hover:bg-primary-500 hover:text-white",
+    3: "border-transparent hover:bg-primary-500 hover:text-white",
   };
 
   // Estilos adicionales si el componente es un link activo
