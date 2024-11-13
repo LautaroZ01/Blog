@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaBars, FaHome, FaUser, FaCog, FaSignOutAlt, FaUsers, FaRegListAlt } from 'react-icons/fa';
+import { RiArticleFill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import useAuth from '../../../../Hooks/useAuth';
 
@@ -40,6 +41,16 @@ function Sidebar() {
                                 <Link to={'/dashboard/roles'} className='flex gap-2 items-center p-2 border-l-4 border-transparent rounded-md hover:border-primary-500 hover:bg-text-100 transition-all duration-300'>
                                     <FaRegListAlt className='text-primary-500' />
                                     {isOpen && <span href="#home">Lista de roles</span>}
+                                </Link>
+                            </li>
+                        </>
+                    }
+                    {auth && auth.rol != 'Usuario' &&
+                        <>
+                            <li className="">
+                                <Link to={'/dashboard/posts'} className='flex gap-2 items-center p-2 border-l-4 border-transparent rounded-md hover:border-primary-500 hover:bg-text-100 transition-all duration-300'>
+                                    <RiArticleFill className='text-primary-500' />
+                                    {isOpen && <span href="#home">Lista de articulos</span>}
                                 </Link>
                             </li>
                         </>

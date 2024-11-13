@@ -20,6 +20,8 @@ import { Users } from "../Components/Dashboard/Tables/Users"
 import { AdminRoutes } from "./AdminRoutes"
 import { Categories } from "../Components/Dashboard/Tables/Categories"
 import { Roles } from "../Components/Dashboard/Tables/Roles"
+import { Edit } from "../Components/Post/Author/Edit"
+import { Posts } from "../Components/Dashboard/Tables/Posts"
 
 export const Routing = () => {
     return (
@@ -33,6 +35,7 @@ export const Routing = () => {
 
                         <Route path="/escritor" element={<AuthorRoute><IndexAuthor /></AuthorRoute>}>
                             <Route path="crear" element={<Create />} />
+                            <Route path="editar/:id" element={<Edit />} />
                         </Route>
 
                         <Route path="/blog" element={<PrivateRoute> <HomePrivate /> </PrivateRoute>}>
@@ -51,6 +54,7 @@ export const Routing = () => {
                         <Route path="users" element={<AdminRoutes ><Users /></AdminRoutes>} />
                         <Route path="categories" element={<AdminRoutes ><Categories /></AdminRoutes>} />
                         <Route path="roles" element={<AdminRoutes ><Roles /></AdminRoutes>} />
+                        <Route path="posts" element={<AuthorRoute ><Posts /></AuthorRoute>} />
                     </Route>
 
                     <Route path='*' element={<NotFound />} />

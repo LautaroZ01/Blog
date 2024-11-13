@@ -13,6 +13,7 @@ import { Avatar } from "../UI/Layout/User/Avatar";
 import { List } from "./Comments/List";
 
 import parse from 'html-react-parser';
+import { BtnEdit } from "../UI/Layout/Post/Author/BtnEdit";
 
 export const Post = ({ setImagePost = () => { } }) => {
   const { id } = useParams();
@@ -74,7 +75,7 @@ export const Post = ({ setImagePost = () => { } }) => {
 
         </div>
         <div className="flex flex-col gap-2 p-2 items-center">
-          <h1 className="h-text text-3xl font-extrabold">{post.title}</h1>
+          <h1 className="h-text text-3xl font-extrabold ">{post.title}</h1>
           <div className="flex gap-2 items-center">
             <small className="text-text-400">Creado el {date}</small>
             <LuDot className="text-text-400" />
@@ -86,11 +87,15 @@ export const Post = ({ setImagePost = () => { } }) => {
         </div>
       </div>
       {post.images &&
-        <img
-          src={post.images && post.images[0].url}
-          alt={post.title}
-          className="w-full h-full object-cover shadow-md rounded-md aspect-video"
-        />
+        <div className="relative group">
+          <img
+            src={post.images && post.images[0].url}
+            alt={post.title}
+            className="w-full h-full object-cover shadow-md rounded-md aspect-video"
+          />
+          <BtnEdit id={post.id} />
+        </div>
+
       }
 
       <div className="max-w-[75ch] mx-auto py-6 p-2">

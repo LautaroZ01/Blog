@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react"
-import { Global } from "../../../../../Helpers/Global"
+import { useEffect, useState } from "react";
+import { Global } from "../../../../../Helpers/Global";
 
-export const Category = ({ changed }) => {
-    const [categories, setCategories] = useState([])
+export const Category = ({ changed, name = null }) => {
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        getCategories()
-    }, [])
+        getCategories();
+    }, []);
 
     const getCategories = async () => {
         const response = await fetch(Global.url + 'post/categories', {
@@ -15,18 +15,18 @@ export const Category = ({ changed }) => {
             headers: {
                 "Content-Type": "application/json",
             }
-        })
+        });
 
         const data = await response.json();
 
-        if (data.status == 'success') {
-            setCategories(data.categories)
+        if (data.status === 'success') {
+            setCategories(data.categories);
         }
-    }
+    };
 
     return (
-        <div className="flex flex-col gap-2 ">
-            <label htmlFor="id_category">Categoria</label>
+        <div className="flex flex-col gap-2">
+            <label htmlFor="id_category">Categoría</label>
             <select
                 name="id_category"
                 id="id_category"
@@ -38,11 +38,18 @@ export const Category = ({ changed }) => {
                     Seleccione una categoría
                 </option>
                 {categories && categories.map(category => (
-                    <option key={category.id} value={category.id}>
-                        {category.name}
-                    </option>
+
+                    name && category.name === name ?
+                        <option key={category.id} value={category.id} selected>
+                            {category.name}
+                        </option>
+                        :
+                        <option key={category.id} value={category.id}>
+                            {category.name}
+                        </option>
+
                 ))}
             </select>
-        </div>
-    )
-}
+        </div >
+    );
+};

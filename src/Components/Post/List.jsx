@@ -6,6 +6,7 @@ import { Button } from "../UI/Utils/Button";
 import PropTypes from "prop-types";
 
 import parse from 'html-react-parser';
+import { BtnEdit } from "../UI/Layout/Post/Author/BtnEdit";
 
 
 export const List = ({ posts = [] }) => {
@@ -19,7 +20,8 @@ export const List = ({ posts = [] }) => {
             <section className="grid md:grid-cols-2 grid-flow-row gap-4 p-2">
                 {posts.length > 0 ? (
                     posts.map((post) => (
-                        <article key={post.id} className="flex flex-col gap-2 shadow-md rounded-md">
+                        <article key={post.id} className="relative flex flex-col gap-2 shadow-md rounded-md group">
+                            <BtnEdit id={post.id} />
                             <Link to={'/post/' + post.id}>
                                 <img
                                     src={post.image_url}

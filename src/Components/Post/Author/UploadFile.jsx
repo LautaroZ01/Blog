@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const UploadFile = ({getInputProps, getRootProps, isDragActive, file, extraClass = '' }) => {
+export const UploadFile = ({ getInputProps, getRootProps, isDragActive, file, extraClass = '', url = null }) => {
     const [preview, setPreview] = useState(null)
 
     useEffect(() => {
@@ -11,9 +11,14 @@ export const UploadFile = ({getInputProps, getRootProps, isDragActive, file, ext
             // Limpia el objeto URL cuando el componente se desmonte o el archivo cambie
             return () => URL.revokeObjectURL(objectUrl);
         } else {
-            setPreview(null);
+            if (url) {
+                setPreview(url);
+            } else {
+                setPreview(null);
+
+            }
         }
-    }, [file]);
+    }, [file, url]);
 
     return (
         <div
