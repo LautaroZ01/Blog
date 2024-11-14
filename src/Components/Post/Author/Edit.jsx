@@ -9,7 +9,7 @@ import { Global } from '../../../Helpers/Global';
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button } from '../../UI/Utils/Button';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowBack } from '../../UI/Utils/ArrowBack';
 
 export const Edit = () => {
@@ -24,6 +24,7 @@ export const Edit = () => {
     const [image2, setImage2] = useState(null);
 
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -100,6 +101,7 @@ export const Edit = () => {
                 }
                 setPost(data.post)
                 setLoading(false);
+                navigate("/dashboard/posts");
             }, 3000);
         } else {
             setError('Algo salio mal.');

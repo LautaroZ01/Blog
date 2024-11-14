@@ -10,6 +10,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button } from '../../UI/Utils/Button';
 import { ArrowBack } from '../../UI/Utils/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 
 export const Create = () => {
     const [value, setValue] = useState('');
@@ -18,6 +19,8 @@ export const Create = () => {
     const [image2, setImage2] = useState(null);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
 
     const onDropImage1 = useCallback(acceptedFiles => {
         setImage1(acceptedFiles[0]);
@@ -62,6 +65,7 @@ export const Create = () => {
                 await uploadFile(image1, 2, data.post.id);
                 console.log("El post se creo");
                 setLoading(false);
+                navigate("/dashboard/posts");
             }, 3000);
         } else {
             setError('Algo salio mal.');
@@ -85,6 +89,7 @@ export const Create = () => {
 
             if (data.status === "success") {
                 setLoading(false);
+
                 console.log('Archivo subido con éxito');
             } else {
                 setLoading(false);

@@ -6,18 +6,33 @@ import { Global } from "../../../Helpers/Global";
 import { formatearFecha } from "../../../Helpers/DateParth";
 import { Status } from "../../UI/Layout/Dashboard/Posts/Status";
 import { Link } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
+import { DeletePopUp } from "../../UI/Layout/Dashboard/Posts/DeletePopUp";
 
 export const Posts = () => {
     const [posts, setPosts] = useState([])
+    const {auth} = useAuth()
+
+    const [selectedPost, setSelectedPost] = useState(null);
+    const [showDelete, setShowDelete] = useState(false)
 
     useEffect(() => {
         getPosts()
     }, [])
 
     const getPosts = async () => {
+        let url = Global.url + 'post/private';
+
+        if(auth.rol == 'Administrador'){
+            url = url + '?status=all';
+        }else{
+            url = url + '?status=escritor';
+        }
+
         try {
-            const request = await fetch(Global.url + 'post', {
+            const request = await fetch(url, {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     "Content-Type": "application/json",
                 }
@@ -33,6 +48,16 @@ export const Posts = () => {
             console.log('Algo salio mal', error)
         }
     }
+
+    const handleDelete = (post) => {
+        setSelectedPost(post)
+        setShowDelete(true)
+    }
+
+    const closePopUp = () => {
+        setShowDelete(false)
+    }
+
     return (
         <section>
             <div className="overflow-x-auto">
@@ -78,11 +103,12 @@ export const Posts = () => {
                                             >
                                                 <FiEdit />
                                             </Link>
-                                            <Link
+                                            <button
+                                                onClick={() => handleDelete(post)}
                                                 className="text-primary-900 inline-flex p-2 bg-primary-100 rounded-md"
                                             >
                                                 <MdDeleteSweep />
-                                            </Link>
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}
@@ -91,6 +117,14 @@ export const Posts = () => {
                     </div>
                 </div>
             </div>
+
+            {showDelete && selectedPost && (
+                <DeletePopUp 
+                    post={selectedPost}
+                    onClose={closePopUp}
+                    getPosts={getPosts}
+                />
+            )}
         </section>
     )
 }
