@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 export const List = ({ idPost }) => {
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [visibleComments, setVisibleComments] = useState(10); // Cantidad de comentarios visibles inicialmente
 
     useEffect(() => {
         getComments();
@@ -34,11 +35,24 @@ export const List = ({ idPost }) => {
         }
     };
 
+    const loadMoreComments = () => {
+        setVisibleComments((prevVisibleComments) => prevVisibleComments + 10); // Incrementa en 10
+    };
+
     return (
         <section className="flex flex-col gap-2 bg-bg-100 p-2 rounded-md">
             <h3 className="h-text text-xl font-bold">Comentarios</h3>
             <CommentForm idPost={idPost} setList={setList} />
-            <CommentList loading={loading} list={list} setList={setList} />
+            <CommentList
+                loading={loading}
+                list={list.slice(0, visibleComments)} // Muestra solo los comentarios visibles
+                setList={setList}
+            />
+            {!loading && visibleComments < list.length && (
+                <button onClick={loadMoreComments} className="text-accent-500">
+                    Ver más
+                </button>
+            )}
         </section>
     );
 };

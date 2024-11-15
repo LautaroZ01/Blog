@@ -6,6 +6,7 @@ import { MdDeleteSweep } from "react-icons/md";
 import { CreatePopUp } from "../../UI/Layout/Dashboard/Roles/CreatePopUp";
 import { EditPopUp } from "../../UI/Layout/Dashboard/Roles/EditPopUp";
 import { DeletePopUp } from "../../UI/Layout/Dashboard/Roles/DeletePopUp";
+import { Pagination } from "../../UI/Utils/Pagination";
 
 export const Roles = () => {
     const [roles, setRoles] = useState([])
@@ -15,6 +16,9 @@ export const Roles = () => {
     const [showNewRol, setShowNewRol] = useState(false)
     const [showEdit, setShowEdit] = useState(false)
     const [showDelete, setShowDelete] = useState(false)
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 5;
 
     useEffect(() => {
         getRoles()
@@ -53,8 +57,14 @@ export const Roles = () => {
         setShowDelete(false)
     }
 
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentRoles = roles.slice(indexOfFirstPost, indexOfLastPost);
+    const totalPages = Math.ceil(roles.length / postsPerPage);
+
     return (
-        <section>
+        <section className="p-2">
+            <h1 className="font-bold text-xl py-4">Lista de Roles</h1>
             <div className="overflow-x-auto">
                 <div className="min-w-full inline-block align-middle">
                     <button
@@ -75,7 +85,7 @@ export const Roles = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {roles.length > 0 && roles.map((rol) => (
+                                {currentRoles.length > 0 && currentRoles.map((rol) => (
                                     <tr className="odd:bg-white even:bg-text-100 hover:bg-text-100" key={rol.id}>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize">{rol.id}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize">{rol.name}</td>
@@ -88,7 +98,7 @@ export const Roles = () => {
                                                 <FiEdit />
                                             </button>
                                             <button
-                                                className="text-primary-900 inline-flex p-2 bg-primary-100 rounded-md"
+                                                className="text-red-900 inline-flex p-2 bg-red-100 rounded-md"
                                                 onClick={() => handleDelete(rol)}
                                             >
                                                 <MdDeleteSweep />
@@ -99,6 +109,11 @@ export const Roles = () => {
                             </tbody>
                         </table>
                     </div>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={(page) => setCurrentPage(page)}
+                    />
                 </div>
             </div>
 

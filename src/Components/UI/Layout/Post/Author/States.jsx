@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Global } from "../../../../../Helpers/Global";
+import PropTypes from "prop-types";
 
 export const States = ({ changed, name = null }) => {
     const [states, setEstates] = useState([]);
@@ -51,3 +52,8 @@ export const States = ({ changed, name = null }) => {
         </div>
     );
 };
+
+States.propTypes = {
+    changed: PropTypes.object.isRequired,
+    name: PropTypes.string
+  };

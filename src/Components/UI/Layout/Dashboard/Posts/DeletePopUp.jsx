@@ -1,4 +1,5 @@
 import { Global } from "../../../../../Helpers/Global"
+import PropTypes from "prop-types";
 
 export const DeletePopUp = ({ post, onClose, getPosts }) => {
 
@@ -14,7 +15,7 @@ export const DeletePopUp = ({ post, onClose, getPosts }) => {
 
         const data = await response.json();
 
-        if(data.status === 'success'){
+        if (data.status === 'success') {
             getPosts()
             onClose()
         }
@@ -48,3 +49,9 @@ export const DeletePopUp = ({ post, onClose, getPosts }) => {
         </div>
     )
 }
+
+DeletePopUp.propTypes = {
+    post: PropTypes.object.isRequired,
+    onClose: PropTypes.func.isRequired,
+    getPosts: PropTypes.func.isRequired
+};

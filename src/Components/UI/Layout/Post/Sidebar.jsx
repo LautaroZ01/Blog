@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Global } from "../../../../Helpers/Global";
+import PropTypes from "prop-types";
 
 export const Sidebar = ({ search = {}, searcher = null, searcherId = null }) => {
     const [categories, setCategories] = useState([]);
@@ -60,3 +61,9 @@ export const Sidebar = ({ search = {}, searcher = null, searcherId = null }) => 
         </aside>
     );
 };
+
+Sidebar.propTypes = {
+    search: PropTypes.object.isRequired,
+    searcher: PropTypes.func,
+    searcherId: PropTypes.func
+  };

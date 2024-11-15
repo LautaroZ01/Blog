@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Global } from "../../../../../Helpers/Global";
+import PropTypes from "prop-types";
 
 export const Category = ({ changed, name = null }) => {
     const [categories, setCategories] = useState([]);
@@ -53,3 +54,8 @@ export const Category = ({ changed, name = null }) => {
         </div >
     );
 };
+
+Category.propTypes = {
+    changed: PropTypes.object.isRequired,
+    name: PropTypes.string
+  };

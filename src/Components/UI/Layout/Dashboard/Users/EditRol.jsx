@@ -3,6 +3,7 @@ import { Global } from "../../../../../Helpers/Global";
 import { Button } from "../../../Utils/Button";
 import { useForm } from "../../../../../Hooks/useForm";
 import useAuth from "../../../../../Hooks/useAuth";
+import PropTypes from "prop-types";
 
 export const EditRol = ({ id = 0, toggleEdit = null, getUsers = null }) => {
     const [roles, setRoles] = useState([]);
@@ -74,3 +75,9 @@ export const EditRol = ({ id = 0, toggleEdit = null, getUsers = null }) => {
         </form>
     );
 };
+
+EditRol.propTypes = {
+    id: PropTypes.number.isRequired,
+    toggleEdit: PropTypes.func.isRequired,
+    getUsers: PropTypes.func.isRequired
+  };

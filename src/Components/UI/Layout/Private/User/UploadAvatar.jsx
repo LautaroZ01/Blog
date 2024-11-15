@@ -4,6 +4,7 @@ import { Global } from "../../../../../Helpers/Global";
 import useAuth from "../../../../../Hooks/useAuth";
 import { useDropzone } from 'react-dropzone';
 import upload from '/Fondos/Fondoperfil.png'
+import PropTypes from "prop-types";
 
 export const UploadAvatar = ({ setUser = null, toggleUploadPopup = null }) => {
     const { setAuth } = useAuth();
@@ -68,3 +69,8 @@ export const UploadAvatar = ({ setUser = null, toggleUploadPopup = null }) => {
         </form>
     );
 };
+
+UploadAvatar.propTypes = {
+    setUser: PropTypes.func.isRequired,
+    toggleUploadPopup: PropTypes.func.isRequired
+  };

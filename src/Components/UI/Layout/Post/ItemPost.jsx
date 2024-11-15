@@ -9,6 +9,8 @@ import { Like } from "../User/Like";
 import parse from 'html-react-parser';
 import { BtnEdit } from "./Author/BtnEdit";
 
+import PropTypes from "prop-types";
+
 
 export const ItemPost = ({ post = {}, isRow = true }) => {
   const date = formatearFecha(post.created_at);
@@ -117,4 +119,9 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
       </article>
     );
   }
+};
+
+ItemPost.propTypes = {
+  post: PropTypes.object.isRequired,
+  isRow: PropTypes.bool
 };

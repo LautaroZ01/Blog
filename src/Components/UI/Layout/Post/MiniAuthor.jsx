@@ -1,5 +1,5 @@
-import { FaUserAlt } from "react-icons/fa"
 import { Avatar } from "../User/Avatar"
+import PropTypes from "prop-types";
 
 export const MiniAuthor = ({ name, photo, description = '' }) => {
     return (
@@ -14,3 +14,9 @@ export const MiniAuthor = ({ name, photo, description = '' }) => {
         </article>
     )
 }
+
+MiniAuthor.propTypes = {
+    name: PropTypes.string.isRequired,
+    photo: PropTypes.string,
+    description: PropTypes.string
+};

@@ -4,9 +4,13 @@ import { Avatar } from "../../UI/Layout/User/Avatar";
 import dayjs from "dayjs";
 import { FiEdit } from "react-icons/fi";
 import { EditRol } from "../../UI/Layout/Dashboard/Users/EditRol";
+import { Pagination } from "../../UI/Utils/Pagination";
 
 export const Users = () => {
     const [users, setUsers] = useState([]);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 5;
 
     useEffect(() => {
         getUsers();
@@ -50,8 +54,14 @@ export const Users = () => {
     };
 
 
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentUsers = users.slice(indexOfFirstPost, indexOfLastPost);
+    const totalPages = Math.ceil(users.length / postsPerPage);
+
     return (
-        <section className="flex flex-col">
+        <section className="flex flex-col p-2">
+            <h1 className="font-bold text-xl py-4">Lista de Usuarios</h1>
             <div className="overflow-x-auto">
                 <div className="min-w-full inline-block align-middle">
                     <div className="overflow-hidden rounded-md">
@@ -66,7 +76,7 @@ export const Users = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.length > 0 && users.map(user => (
+                                {currentUsers.length > 0 && currentUsers.map(user => (
                                     <tr className="odd:bg-white even:bg-text-100 hover:bg-text-100" key={user.id}>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 flex items-center gap-4">
                                             <Avatar photo={user.photo} alt={user.username} size={'8'} />
@@ -96,6 +106,11 @@ export const Users = () => {
                             </tbody>
                         </table>
                     </div>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={(page) => setCurrentPage(page)}
+                    />
                 </div>
             </div>
         </section>

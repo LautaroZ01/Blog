@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Status = ({ state = null }) => {
     let status;
 
@@ -19,3 +21,7 @@ export const Status = ({ state = null }) => {
         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${status}`}>{state}</span>
     );
 };
+
+Status.propTypes = {
+    state: PropTypes.string
+  };
