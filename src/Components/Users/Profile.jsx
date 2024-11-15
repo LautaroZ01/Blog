@@ -6,7 +6,6 @@ import { FiEdit } from "react-icons/fi";
 import { FormUser } from "../UI/Layout/Private/User/FormUser";
 import { Avatar } from "../UI/Layout/User/Avatar";
 import { UploadAvatar } from "../UI/Layout/Private/User/UploadAvatar";
-import { RxCross2 } from "react-icons/rx";
 
 export const Profile = () => {
     const [isEdit, setIsEdit] = useState(false);

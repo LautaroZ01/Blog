@@ -27,4 +27,4 @@ CommentList.propTypes = {
     list: PropTypes.array,
     loading: PropTypes.bool,
     setList: PropTypes.func
-  };
+};

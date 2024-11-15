@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import PropTypes from "prop-types";
+
 
 export const UploadFile = ({ getInputProps, getRootProps, isDragActive, file, extraClass = '', url = null }) => {
     const [preview, setPreview] = useState(null)
@@ -37,3 +39,12 @@ export const UploadFile = ({ getInputProps, getRootProps, isDragActive, file, ex
         </div>
     )
 }
+
+UploadFile.propTypes = {
+    getInputProps: PropTypes.func.isRequired,
+    getRootProps: PropTypes.func.isRequired,
+    isDragActive: PropTypes.func.isRequired,
+    file: PropTypes.file,
+    extraClass: PropTypes.string,
+    url: PropTypes.string,
+  };

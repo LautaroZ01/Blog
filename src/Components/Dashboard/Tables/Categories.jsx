@@ -6,13 +6,17 @@ import { MdDeleteSweep } from "react-icons/md";
 import { EditPopUp } from "../../UI/Layout/Dashboard/Categories/EditPopUp";
 import { DeletePopUp } from "../../UI/Layout/Dashboard/Categories/DeletePopUp";
 import { CreatePopUp } from "../../UI/Layout/Dashboard/Categories/CreatePopUp";
+import { Pagination } from "../../UI/Utils/Pagination";
 
 export const Categories = () => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [showEditPopup, setShowEditPopup] = useState(false);
     const [showDeleteWarning, setShowDeleteWarning] = useState(false);
-    const [showNewCategoryPopup, setShowNewCategoryPopup] = useState(false); // Nuevo estado para el pop-up de crear categoría
+    const [showNewCategoryPopup, setShowNewCategoryPopup] = useState(false);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 5;
 
     useEffect(() => {
         getCategories();
@@ -51,8 +55,14 @@ export const Categories = () => {
         setShowNewCategoryPopup(false); // Cerrar el pop-up de nueva categoría
     };
 
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentCategories = categories.slice(indexOfFirstPost, indexOfLastPost);
+    const totalPages = Math.ceil(categories.length / postsPerPage);
+
     return (
-        <section className="flex flex-col">
+        <section className="flex flex-col p-2">
+            <h1 className="font-bold text-xl py-4">Lista de Categorias</h1>
             <div className="overflow-x-auto">
                 <div className="min-w-full inline-block align-middle">
                     <button
@@ -73,7 +83,7 @@ export const Categories = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {categories.length > 0 && categories.map((category) => (
+                                {currentCategories.length > 0 && currentCategories.map((category) => (
                                     <tr className="odd:bg-white even:bg-text-100 hover:bg-text-100" key={category.id}>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize">{category.id}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize">{category.name}</td>
@@ -86,7 +96,7 @@ export const Categories = () => {
                                                 <FiEdit />
                                             </button>
                                             <button
-                                                className="text-primary-900 inline-flex p-2 bg-primary-100 rounded-md"
+                                                className="text-red-900 inline-flex p-2 bg-red-100 rounded-md"
                                                 onClick={() => handleDeleteClick(category)}
                                             >
                                                 <MdDeleteSweep />
@@ -97,6 +107,11 @@ export const Categories = () => {
                             </tbody>
                         </table>
                     </div>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={(page) => setCurrentPage(page)}
+                    />
                 </div>
             </div>
 

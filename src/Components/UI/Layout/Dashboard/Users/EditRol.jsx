@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { Global } from "../../../../../Helpers/Global";
 import { Button } from "../../../Utils/Button";
 import { useForm } from "../../../../../Hooks/useForm";
+import useAuth from "../../../../../Hooks/useAuth";
+import PropTypes from "prop-types";
 
 export const EditRol = ({ id = 0, toggleEdit = null, getUsers = null }) => {
     const [roles, setRoles] = useState([]);
     const { form, changed } = useForm();
+    const {auth, setAuth} = useAuth();
 
     useEffect(() => {
         fetchRoles();
@@ -21,6 +24,7 @@ export const EditRol = ({ id = 0, toggleEdit = null, getUsers = null }) => {
 
         if (fetchData.status == 'success') {
             setRoles(fetchData.roles);
+            
         }
     };
 
@@ -30,7 +34,7 @@ export const EditRol = ({ id = 0, toggleEdit = null, getUsers = null }) => {
         form.id_user = id;
 
         const response = await fetch(Global.url + 'user/rol', {
-            method: 'POST',
+            method: 'PATCH',
             body: JSON.stringify(form),
             credentials: 'include',
             headers: {
@@ -42,6 +46,9 @@ export const EditRol = ({ id = 0, toggleEdit = null, getUsers = null }) => {
 
         if (data.status === 'success') {
             getUsers()
+            if(auth.id == id){
+                setAuth((prevAuth) => ({ ...prevAuth, rol: data.rol.name }));
+            }
         }
         toggleEdit(id);
     };
@@ -68,3 +75,9 @@ export const EditRol = ({ id = 0, toggleEdit = null, getUsers = null }) => {
         </form>
     );
 };
+
+EditRol.propTypes = {
+    id: PropTypes.number.isRequired,
+    toggleEdit: PropTypes.func.isRequired,
+    getUsers: PropTypes.func.isRequired
+  };
