@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Global } from "../../../../../Helpers/Global";
 import PropTypes from "prop-types";
 
 export const DeletePopUp = ({ rol, onClose, getRoles }) => {
+    const [error, setError] = useState('')
 
     const deleteRol = async () => {
         const response = await fetch(Global.url + 'rol', {
@@ -18,6 +20,8 @@ export const DeletePopUp = ({ rol, onClose, getRoles }) => {
         if (data.status === "success") {
             getRoles();
             onClose();
+        }else {
+            setError('Ese rol no se puede eliminar debido a que se esta utilzando')
         }
     };
 
@@ -45,6 +49,11 @@ export const DeletePopUp = ({ rol, onClose, getRoles }) => {
                         Eliminar
                     </button>
                 </div>
+                {error &&
+                    <div className="text-red-900 bg-red-100 p-2 rounded-md">
+                        {<p>{error}</p>}
+                    </div>
+                }
             </div>
         </div>
 

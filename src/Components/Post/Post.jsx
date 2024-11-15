@@ -99,7 +99,7 @@ export const Post = ({ setImagePost = () => { } }) => {
       }
 
       <div className="max-w-[75ch] mx-auto py-6 p-2">
-        <div className="p-text text-base text-balance text-text-500">
+        <div className="p-text text-base text-balance text-text-600">
           {parse(post.content)}
         </div>
       </div>

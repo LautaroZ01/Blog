@@ -7,19 +7,28 @@ import PropTypes from "prop-types";
 
 import parse from 'html-react-parser';
 import { BtnEdit } from "../UI/Layout/Post/Author/BtnEdit";
+import { useState } from "react";
+import { Pagination } from "../UI/Utils/Pagination";
 
 
 export const List = ({ posts = [] }) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 5;
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    const totalPages = Math.ceil(posts.length / postsPerPage);
 
     return (
-        <section>
+        <section className="flex flex-col gap-2">
             <div className="flex items-center p-2">
                 <ArrowBack />
                 <h1 className="h-text text-3xl font-extrabold flex-1 text-center">Mis articulos</h1>
             </div>
-            <section className="grid md:grid-cols-2 grid-flow-row gap-4 p-2">
-                {posts.length > 0 ? (
-                    posts.map((post) => (
+            <section className="grid md:grid-cols-2 grid-flow-row gap-4 p-2 flex-1">
+                {currentPosts.length > 0 ? (
+                    currentPosts.map((post) => (
                         <article key={post.id} className="relative flex flex-col gap-2 shadow-md rounded-md group">
                             <BtnEdit id={post.id} />
                             <Link to={'/post/' + post.id}>
@@ -37,7 +46,7 @@ export const List = ({ posts = [] }) => {
                                 <Link to={'/post/' + post.id} className="hover:text-text-500 transition-colors duration-[.25s]" >
                                     <h3 className="h-text text-lg font-extrabold">{post.title}</h3>
                                 </Link>
-                                <div className="p-text text-base text-balance line-clamp-3 text-text-500">
+                                <div className="p-text text-base text-balance line-clamp-3 text-text-600">
                                     {parse(post.content)}
                                 </div>
                             </div>
@@ -52,6 +61,13 @@ export const List = ({ posts = [] }) => {
                     <p>No hay posts disponibles.</p>
                 )}
             </section>
+            {currentPosts.length > 0 &&
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={(page) => setCurrentPage(page)}
+                />
+            }
         </section>
     )
 }

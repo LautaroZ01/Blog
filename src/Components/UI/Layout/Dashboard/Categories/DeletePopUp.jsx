@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Global } from "../../../../../Helpers/Global";
 import PropTypes from "prop-types";
 
 export const DeletePopUp = ({ category, onClose, getCategories }) => {
+    const [error, setError] = useState('')
 
     const deleteCategory = async () => {
         const response = await fetch(Global.url + 'category', {
@@ -18,6 +20,8 @@ export const DeletePopUp = ({ category, onClose, getCategories }) => {
         if (data.status === "success") {
             getCategories();
             onClose();
+        } else {
+            setError('Esa categoria no se puede eliminar debido a que se esta utilzando')
         }
     };
 
@@ -45,6 +49,11 @@ export const DeletePopUp = ({ category, onClose, getCategories }) => {
                         Eliminar
                     </button>
                 </div>
+                {error &&
+                    <div className="text-red-900 bg-red-100 p-2 rounded-md">
+                        {<p>{error}</p>}
+                    </div>
+                }
             </div>
         </div>
 

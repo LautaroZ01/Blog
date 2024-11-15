@@ -107,7 +107,9 @@ export const Posts = () => {
                                             {post.title}
                                             <span className="text-text-400 text-sm">{formatearFecha(post.created_at)}</span>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize">{post.author} {post.surname}</td>
+                                        {auth && auth.rol == 'Administrador' &&
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize">{post.author} {post.surname}</td>
+                                        }
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize">{post.category}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize"><Status state={post.state} /></td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize">
