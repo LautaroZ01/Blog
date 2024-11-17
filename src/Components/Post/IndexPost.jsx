@@ -20,6 +20,8 @@ export const IndexPost = () => {
         category: []
     });
 
+    const [idAuthor, setIdAuthor] = useState(null)
+
     const { id } = useParams();
 
     useEffect(() => {
@@ -115,12 +117,16 @@ export const IndexPost = () => {
             </div>
             <div className="md:max-w-[80%] mx-auto z-40 -translate-y-24 flex flex-wrap-reverse gap-2 p-2 md:p-0">
                 <section className='flex flex-col flex-[0_0_100%] lg:flex-[0_0_75%] bg-white p-2 rounded-md min-h-[800px]'>
-                    {id ? <Post setImagePost={setImgFondo} /> :
+                    {id ? <Post setImagePost={setImgFondo} setIdAuthor={setIdAuthor} /> :
                         !loading ? <List posts={filterPosts} /> : <h1>Cargando...</h1>
                     }
                 </section>
                 <section className="flex-[0_0_100%] lg:flex-[0_0_24%] bg-white rounded-md border border-text-100">
-                    <Sidebar search={search} searcher={searcher} searcherId={searcherId} />
+                    {id ?
+                        <Sidebar search={search} searcher={searcher} searcherId={searcherId} id_author={idAuthor !== null ? idAuthor : undefined} /> :
+                        !loading ?
+                            <Sidebar search={search} searcher={searcher} searcherId={searcherId} /> : <h1>Cargando...</h1>
+                    }
                 </section>
 
 

@@ -22,6 +22,7 @@ import { Categories } from "../Components/Dashboard/Tables/Categories"
 import { Roles } from "../Components/Dashboard/Tables/Roles"
 import { Edit } from "../Components/Post/Author/Edit"
 import { Posts } from "../Components/Dashboard/Tables/Posts"
+import { View } from "../Components/Post/Author/View"
 
 export const Routing = () => {
     return (
@@ -32,6 +33,7 @@ export const Routing = () => {
                         <Route index element={<Index />} />
                         <Route path="/post" element={<IndexPost />} />
                         <Route path="/post/:id" element={<IndexPost />} />
+                        <Route path="/escritor/perfil/:id" element={<View />} />
 
                         <Route path="/escritor" element={<AuthorRoute><IndexAuthor /></AuthorRoute>}>
                             <Route path="crear" element={<Create />} />

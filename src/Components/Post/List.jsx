@@ -30,7 +30,7 @@ export const List = ({ posts = [] }) => {
                 {currentPosts.length > 0 ? (
                     currentPosts.map((post) => (
                         <article key={post.id} className="relative flex flex-col gap-2 shadow-md rounded-md group">
-                            <BtnEdit id={post.id} />
+                            <BtnEdit id={post.id} name={post.author} />
                             <Link to={'/post/' + post.id}>
                                 <img
                                     src={post.image_url}
@@ -46,7 +46,7 @@ export const List = ({ posts = [] }) => {
                                 <Link to={'/post/' + post.id} className="hover:text-text-500 transition-colors duration-[.25s]" >
                                     <h3 className="h-text text-lg font-extrabold">{post.title}</h3>
                                 </Link>
-                                <div className="p-text text-base text-balance line-clamp-3 text-text-600">
+                                <div className="p-text text-base text-balance line-clamp-3 text-text-600 flex-1">
                                     {parse(post.content)}
                                 </div>
                             </div>

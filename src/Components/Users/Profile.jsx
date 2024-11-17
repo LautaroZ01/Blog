@@ -6,6 +6,7 @@ import { FiEdit } from "react-icons/fi";
 import { FormUser } from "../UI/Layout/Private/User/FormUser";
 import { Avatar } from "../UI/Layout/User/Avatar";
 import { UploadAvatar } from "../UI/Layout/Private/User/UploadAvatar";
+import { InfoAuthor } from "../UI/Layout/Private/Authror/InfoAuthor";
 
 export const Profile = () => {
     const [isEdit, setIsEdit] = useState(false);
@@ -41,7 +42,7 @@ export const Profile = () => {
     };
 
     return (
-        <section className="max-w-[80%] mx-auto p-3 text-base bg-fondo-perfil bg-center bg-no-repeat min-h-[85vh]">
+        <section className="max-w-[80%] mx-auto p-3 text-base bg-fondo-perfil bg-center bg-no-repeat min-h-[86vh]">
             <h1 className="text-2xl font-bold p-4">Mi perfil</h1>
             <div className="flex flex-wrap items-start justify-center gap-4 p-4 rounded-lg shadow-md mb-3 item-animation">
                 <span className="relative">
@@ -80,6 +81,10 @@ export const Profile = () => {
                     </div>
                 </div>
             )}
+
+            {user && user.rol == 'Escritor' &&
+                <InfoAuthor id_author={user.id} />
+            }
         </section>
     );
 };

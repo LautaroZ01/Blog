@@ -41,7 +41,7 @@ export const Contact = () => {
     }
 
     return (
-        <section className="relative py-4">
+        <section className="relative py-4" id="contact">
             <div className="absolute bottom-0 w-full min-h-[40%] fondo-contact -z-10"></div>
             <div className="w-full max-w-[80%] m-auto py-10 md:px-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-4">

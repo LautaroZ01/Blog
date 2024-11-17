@@ -4,7 +4,6 @@ import { Global } from "../../../../../Helpers/Global";
 import useAuth from "../../../../../Hooks/useAuth";
 import PropTypes from "prop-types";
 
-
 export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit = null }) => {
     const { form, changed } = useForm({});
     const [error, setError] = useState('')

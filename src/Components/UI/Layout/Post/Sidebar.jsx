@@ -2,13 +2,22 @@ import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Global } from "../../../../Helpers/Global";
 import PropTypes from "prop-types";
+import { LinkSocial } from "./Author/Social/LinkSocial";
 
-export const Sidebar = ({ search = {}, searcher = null, searcherId = null }) => {
+export const Sidebar = ({ search = {}, searcher = null, searcherId = null, id_author = null }) => {
     const [categories, setCategories] = useState([]);
+    const [socials, setSocials] = useState([])
 
     useEffect(() => {
         getAllCategories();
-    }, []);
+
+        console.log(id_author)
+        if (id_author) {
+            getSocial();
+
+        }
+    }, [id_author]);
+
 
     const getAllCategories = async () => {
         const res = await fetch(Global.url + 'post/categories', {
@@ -24,6 +33,21 @@ export const Sidebar = ({ search = {}, searcher = null, searcherId = null }) => 
             setCategories(data.categories);
         }
     };
+
+    const getSocial = async () => {
+
+        const res = await fetch(Global.url + 'author/social/' + id_author, {
+            method: 'GET'
+        })
+
+        const data = await res.json()
+
+        if (data.status === 'success') {
+            setSocials(data.socialMedials)
+            console.log(data)
+        }
+    }
+
 
     return (
         <aside className="flex flex-col gap-4 p-4 sticky top-44 ">
@@ -58,6 +82,17 @@ export const Sidebar = ({ search = {}, searcher = null, searcherId = null }) => 
                     ))}
                 </form>
             </div>
+            {socials.length > 0 && (
+                <div>
+                    <h3 className="text-lg font-bold text-accent-500">Mis Redes sociales</h3>
+                    <div className="flex gap-4 p-2">
+                        {socials.map((social) => (
+                            <LinkSocial social={social} type={2} key={social.id} />
+                        ))}
+                    </div>
+                </div>
+            )}
+
         </aside>
     );
 };
@@ -65,5 +100,6 @@ export const Sidebar = ({ search = {}, searcher = null, searcherId = null }) => 
 Sidebar.propTypes = {
     search: PropTypes.object.isRequired,
     searcher: PropTypes.func,
-    searcherId: PropTypes.func
-  };
+    searcherId: PropTypes.func,
+    id_author: PropTypes.number
+};

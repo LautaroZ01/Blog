@@ -1,5 +1,5 @@
-import { FaUserAlt } from "react-icons/fa"
 import PropTypes from "prop-types";
+import { FaUserAstronaut } from "react-icons/fa";
 
 export const Avatar = ({ photo = '', alt = '', size = '4' }) => {
     const sizes = {
@@ -19,7 +19,7 @@ export const Avatar = ({ photo = '', alt = '', size = '4' }) => {
             {photo && photo !== 'https://user.svg' ? (
                 <img src={photo} alt={alt} className={className} />
             ) : (
-                <FaUserAlt className={className} />
+                <FaUserAstronaut className={className} />
             )}
         </>
     )

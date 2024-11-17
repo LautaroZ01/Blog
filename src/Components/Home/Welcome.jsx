@@ -13,26 +13,28 @@ export const Welcome = () => {
                     <img src={portada} alt="Portada" className='w-96 h-96 rounded-full object-cover' />
                 </div>
                 <div className='flex flex-col gap-4 items-center'>
-                    <h1 className='text-3xl font-bold text-accent-500'>Alienígenas ancestrales</h1>
-                    <p className='text-balance max-w-[75em] text-center text-text-500'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores sunt fuga impedit aut eius minus optio inventore beatae provident. In accusamus, perferendis iste impedit quos officiis explicabo voluptas corrupti autem.</p>
+                    <h1 className='text-3xl font-bold text-accent-500'>Alienígenas Anceztrales</h1>
+                    <p className='text-balance max-w-[75em] text-center text-text-500'>
+                        Desde los enigmas de los alienígenas y los secretos de antiguos pueblos hasta las dinámicas de la política actual y las maravillas de las curaciones naturales. Un espacio para descubrir, aprender y reflexionar sobre los diversos temas que moldean nuestra existencia.
+                    </p>
                 </div>
                 <div className='flex flex-wrap gap-2 items-center justify-center md:justify-between'>
                     <Badge isButton={false} type={2}>
                         <IoLogoInstagram />
-                        pepitodetucasa
+                        lautarozuleta
                     </Badge>
                     <Badge isButton={false} type={2}>
                         <BiLogoGmail />
-                        pepito@gmail.com
+                        lautarozule80@gmail.com
                     </Badge>
                     <Badge isButton={false} type={2}>
                         <FaFacebookSquare />
-                        pepitored
+                        lautaroz
                     </Badge>
                 </div>
                 <div className='flex gap-4'>
                     <Button path={'/post'}>Ver articulos</Button>
-                    <Button type={2}>Contactar</Button>
+                    <Button type={2} path='#contact'>Contactar</Button>
                 </div>
             </section>
         </main>

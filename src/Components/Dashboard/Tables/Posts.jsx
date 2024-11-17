@@ -33,7 +33,7 @@ export const Posts = () => {
         if (auth.rol === 'Administrador') {
             url = url + '?status=all';
         } else {
-            url = url + '?status=escritor';
+            url = url + '?status=escritor&id='+auth.id;
         }
 
         try {

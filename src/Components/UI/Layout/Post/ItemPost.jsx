@@ -17,9 +17,9 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
 
   if (isRow) {
     return (
-      <article className="row-start-2 col-span-3 md:col-span-1 rounded-md shadow-sm flex flex-col overflow-hidden bg-white ">
+      <article className="row-start-2 col-span-3 md:col-span-1 rounded-md shadow-sm flex flex-col overflow-hidden bg-white min-h-full">
         <Link to={"/post/" + post.id} className="w-full flex-shrink-0 group relative">
-          <BtnEdit id={post.id} />
+          <BtnEdit id={post.id} name={post.author} />
           <img
             src={post.image_url}
             alt={post.title}
@@ -28,20 +28,20 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
           />
         </Link>
 
-        <div className="flex flex-col gap-4 p-4 w-full">
+        <div className="flex flex-col gap-4 p-4 w-full flex-1 min-h-full">
           <div className="flex justify-between items-center">
             <Badge isBig={false}>{post.category}</Badge>
             <small className="text-primary-500">{date}</small>
           </div>
 
-          <div className="flex flex-col gap-2 flex-1">
+          <div className="flex flex-col gap-2 flex-1 ">
             <Link to={"/post/" + post.id}>
               <h3 className="h-text text-xl lg:text-2xl font-extrabold hover:text-text-500 transition-all duration-200">
                 {post.title.toUpperCase()}
               </h3>
             </Link>
 
-            <div className="p-text text-base text-balance line-clamp-3 text-text-500">
+            <div className="p-text text-base text-balance line-clamp-3 text-text-500 flex-1 min-h-full">
               {parse(post.content)}
             </div>
           </div>
@@ -68,7 +68,7 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
           to={"/post/" + post.id}
           className="w-full lg:w-[45%] flex-shrink-0 relative group"
         >
-          <BtnEdit id={post.id} />
+          <BtnEdit id={post.id} name={post.author} />
           <img
             src={post.image_url}
             alt={post.title}
@@ -77,7 +77,7 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
           />
         </Link>
         <div className="w-full lg:w-[55%] flex flex-col justify-between p-4">
-          <div className="mb-6 border-b border-text-500 py-3 flex items-center flex-wrap gap-4">
+          <div className="mb-6 border-b border-text-200 py-3 flex items-center flex-wrap gap-4">
             <div className="flex-grow flex flex-col gap-2 items-start">
               <Badge isBig={false}>{post.category}</Badge>
               <Link to={"/post/" + post.id}>
@@ -87,7 +87,7 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
               </Link>
             </div>
 
-            <Link>
+            <Link to={'/escritor/perfil/' + post.id_user}>
               <MiniAuthor
                 name={post.author}
                 photo={post.photo}
