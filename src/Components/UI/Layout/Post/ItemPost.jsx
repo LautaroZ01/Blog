@@ -8,6 +8,8 @@ import { Like } from "../User/Like";
 
 import parse from 'html-react-parser';
 import { BtnEdit } from "./Author/BtnEdit";
+import imgPost from '/Resources/Post.png'
+
 
 import PropTypes from "prop-types";
 
@@ -21,7 +23,7 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
         <Link to={"/post/" + post.id} className="w-full flex-shrink-0 group relative">
           <BtnEdit id={post.id} name={post.author} />
           <img
-            src={post.image_url}
+            src={post.image_url ? post.image_url : imgPost}
             alt={post.title}
             className="w-full h-full object-cover aspect-video"
             loading="lazy"
@@ -70,7 +72,7 @@ export const ItemPost = ({ post = {}, isRow = true }) => {
         >
           <BtnEdit id={post.id} name={post.author} />
           <img
-            src={post.image_url}
+            src={post.image_url ? post.image_url : imgPost}
             alt={post.title}
             className="w-full h-full object-cover rounded-md aspect-square"
             loading="lazy"

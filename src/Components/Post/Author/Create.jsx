@@ -11,6 +11,7 @@ import "react-quill/dist/quill.snow.css";
 import { Button } from '../../UI/Utils/Button';
 import { ArrowBack } from '../../UI/Utils/ArrowBack';
 import { useNavigate } from 'react-router-dom';
+import { Tags } from '../../UI/Layout/Post/Author/Tags';
 
 export const Create = () => {
     const [value, setValue] = useState('');
@@ -33,8 +34,10 @@ export const Create = () => {
     const { getRootProps: getRootProps1, getInputProps: getInputProps1, isDragActive: isDragActive1 } = useDropzone({ onDrop: onDropImage1 });
     const { getRootProps: getRootProps2, getInputProps: getInputProps2, isDragActive: isDragActive2 } = useDropzone({ onDrop: onDropImage2 });
 
+
     const createPost = async (e) => {
         e.preventDefault();
+        window.scrollTo(0, 0);
         setLoading(true);
 
         if (!value.trim()) {
@@ -60,9 +63,11 @@ export const Create = () => {
         const data = await request.json();
 
         if (data.status === 'success') {
+
             setTimeout(async () => {
                 await uploadFile(image2, 1, data.post.id);
                 await uploadFile(image1, 2, data.post.id);
+                await addTags(data.post.id, form.list)
                 console.log("El post se creo");
                 setLoading(false);
                 navigate("/dashboard/posts");
@@ -73,6 +78,28 @@ export const Create = () => {
             return;
         }
     };
+
+    const addTags = async (id, list) => {
+        if (list.length > 0) {
+            const id_post = id
+            const response = await fetch(Global.url + "tag/post", {
+                method: "POST",
+                body: JSON.stringify({ id_post, list }),
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+
+            const tag = await response.json()
+
+            if (tag.status === 'success') {
+                console.log('Tags correctos')
+            } else {
+                console.log('Algo salio mal con los tags')
+            }
+        }
+    }
 
     const uploadFile = async (file, type, idPost) => {
         if (file) {
@@ -100,7 +127,10 @@ export const Create = () => {
 
     return (
         <div className='bg-bg-100'>
-            {loading ? <h1>Cargando...</h1> :
+            {loading ?
+                <div className='h-screen grid place-content-center'>
+                    <div className="loader"></div>
+                </div> :
                 <form onSubmit={createPost}>
                     <div className='w-full max-h-96'>
                         <UploadFile
@@ -162,6 +192,7 @@ export const Create = () => {
                             <h2 className='font-bold text-accent-500'>Caracteristicas </h2>
                             <Category changed={changed} />
                             <States changed={changed} />
+                            <Tags form={form} />
                             <Button isButton={true}>Crear articulos</Button>
                         </div>
                     </section>

@@ -77,8 +77,12 @@ export const Contact = () => {
                     <div className="flex flex-col gap-2">
                         <h4 className="font-bold text-lg ">Sigueme</h4>
                         <div className="flex items-center gap-6">
-                            <MdFacebook className="w-10 h-10 bg-accent-100 rounded-full p-2 text-accent-900" />
-                            <IoLogoInstagram className="w-10 h-10 bg-accent-100 rounded-full p-2 text-accent-900" />
+                            <a href="https://facebook.com" target="_blank">
+                                <MdFacebook className="w-10 h-10 bg-accent-100 rounded-full p-2 text-accent-900" />
+                            </a>
+                            <a href="https://instagram.com" target="_blank">
+                                <IoLogoInstagram className="w-10 h-10 bg-accent-100 rounded-full p-2 text-accent-900" />
+                            </a>
                         </div>
                     </div>
                 </div>

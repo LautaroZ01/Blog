@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import imgPost from '/Resources/Post.png'
+
 import { Link, useParams } from "react-router-dom";
 import { Badge } from "../UI/Utils/Badge";
 import { FaCommentAlt } from "react-icons/fa";
@@ -14,10 +16,13 @@ import { List } from "./Comments/List";
 
 import parse from 'html-react-parser';
 import { BtnEdit } from "../UI/Layout/Post/Author/BtnEdit";
+import { Tags } from "../UI/Layout/Post/Tags";
+import { GenetatePDF } from "../UI/Layout/User/GenetatePDF";
 
 export const Post = ({ setImagePost = () => { }, setIdAuthor = null }) => {
   const { id } = useParams();
   const [post, setPost] = useState({});
+  const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,6 +44,7 @@ export const Post = ({ setImagePost = () => { }, setIdAuthor = null }) => {
 
     if (data.status == "success") {
       setPost(data.post);
+      setTags(data.tags)
       setIdAuthor(data.post.id_author)
 
       if (data.post.images && data.post.images[1]) {
@@ -63,9 +69,12 @@ export const Post = ({ setImagePost = () => { }, setIdAuthor = null }) => {
             <ArrowBack />
 
             <Badge isBig={false}>{post.category || 'Sin categoría'}</Badge>
+
+            <Tags tags={tags} />
+
           </div>
           <div className="flex items-center gap-6 ">
-
+            <GenetatePDF post={post} />
             <Like likeCount={post.like_count} id_post={post.id} />
             <Link className="flex items-center gap-2">
               <FaCommentAlt className="text-text-400" />
@@ -87,17 +96,15 @@ export const Post = ({ setImagePost = () => { }, setIdAuthor = null }) => {
           </div>
         </div>
       </div>
-      {post.images &&
-        <div className="relative group">
-          <img
-            src={post.images && post.images[0].url}
-            alt={post.title}
-            className="w-full h-full object-cover shadow-md rounded-md aspect-video"
-          />
-          <BtnEdit id={post.id} name={post.author} />
-        </div>
 
-      }
+      <div className="relative group">
+        <img
+          src={post.images ? post.images[0].url : imgPost}
+          alt={post.title}
+          className="w-full h-full object-cover shadow-md rounded-md aspect-video"
+        />
+        <BtnEdit id={post.id} name={post.author} />
+      </div>
 
       <div className="max-w-[75ch] mx-auto py-6 p-2">
         <div className="p-text text-base text-balance text-text-600">

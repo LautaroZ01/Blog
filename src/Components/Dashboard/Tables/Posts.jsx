@@ -10,10 +10,10 @@ import useAuth from "../../../Hooks/useAuth";
 import { DeletePopUp } from "../../UI/Layout/Dashboard/Posts/DeletePopUp";
 import { RiAiGenerate } from "react-icons/ri";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { PostPDF } from "../PDF/postPDF";
 import { Pagination } from "../../UI/Utils/Pagination";
 import { AiFillLike } from "react-icons/ai";
-import { FaCommentAlt } from "react-icons/fa";
+import { FaCommentAlt, FaEye } from "react-icons/fa";
+import { PostPDF } from "../PDF/PostPDF";
 
 export const Posts = () => {
     const [posts, setPosts] = useState([]);
@@ -33,7 +33,7 @@ export const Posts = () => {
         if (auth.rol === 'Administrador') {
             url = url + '?status=all';
         } else {
-            url = url + '?status=escritor&id='+auth.id;
+            url = url + '?status=escritor&id=' + auth.id;
         }
 
         try {
@@ -104,7 +104,9 @@ export const Posts = () => {
                                     <tr className="odd:bg-white even:bg-text-100 hover:bg-text-100" key={post.id}>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize">{post.id}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 capitalize flex flex-col">
-                                            {post.title}
+                                            <Link to={'/post/' + post.id}>
+                                                {post.title}
+                                            </Link>
                                             <span className="text-text-400 text-sm">{formatearFecha(post.created_at)}</span>
                                         </td>
                                         {auth && auth.rol == 'Administrador' &&
@@ -125,6 +127,14 @@ export const Posts = () => {
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium flex items-center justify-end gap-2">
+                                            {post.state !== 'Deshabilitado' && (
+                                                <Link
+                                                    to={'/post/' + post.id}
+                                                    className="text-primary-900 inline-flex p-2 bg-primary-100 rounded-md"
+                                                >
+                                                    <FaEye />
+                                                </Link>
+                                            )}
                                             <Link
                                                 to={'/escritor/editar/' + post.id}
                                                 className="text-primary-900 inline-flex p-2 bg-primary-100 rounded-md"

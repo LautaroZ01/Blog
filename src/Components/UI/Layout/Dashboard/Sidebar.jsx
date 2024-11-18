@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaBars, FaHome, FaUser, FaSignOutAlt, FaUsers, FaRegListAlt, FaArrowCircleLeft  } from 'react-icons/fa';
+import { FaBars, FaHome, FaUser, FaSignOutAlt, FaUsers, FaRegListAlt, FaArrowCircleLeft, FaTags  } from 'react-icons/fa';
 import { RiArticleFill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import useAuth from '../../../../Hooks/useAuth';
@@ -43,6 +43,12 @@ function Sidebar() {
                                     {isOpen && <span href="#home">Lista de roles</span>}
                                 </Link>
                             </li>
+                            <li className="">
+                                <Link to={'/dashboard/tags'} className='flex gap-2 items-center p-2 border-l-4 border-transparent rounded-md hover:border-primary-500 hover:bg-text-100 transition-all duration-300'>
+                                    <FaTags  className='text-primary-500' />
+                                    {isOpen && <span href="#home">Lista de tags</span>}
+                                </Link>
+                            </li>
                         </>
                     }
                     {auth && auth.rol != 'Usuario' &&
@@ -66,7 +72,7 @@ function Sidebar() {
                     </li>
                     <li className="">
                         <Link to={'/'} className='flex gap-2 items-center p-2 border-l-4 border-transparent rounded-md hover:border-primary-500 hover:bg-text-100 transition-all duration-300'>
-                            <FaArrowCircleLeft   className='text-primary-500' />
+                            <FaArrowCircleLeft className='text-primary-500' />
                             {isOpen && <span href="#settings">Volver al sitio</span>}
                         </Link>
                     </li>

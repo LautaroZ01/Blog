@@ -23,6 +23,7 @@ import { Roles } from "../Components/Dashboard/Tables/Roles"
 import { Edit } from "../Components/Post/Author/Edit"
 import { Posts } from "../Components/Dashboard/Tables/Posts"
 import { View } from "../Components/Post/Author/View"
+import { Tags } from "../Components/Dashboard/Tables/Tags"
 
 export const Routing = () => {
     return (
@@ -57,6 +58,7 @@ export const Routing = () => {
                         <Route path="categories" element={<AdminRoutes ><Categories /></AdminRoutes>} />
                         <Route path="roles" element={<AdminRoutes ><Roles /></AdminRoutes>} />
                         <Route path="posts" element={<AuthorRoute ><Posts /></AuthorRoute>} />
+                        <Route path="tags/:isAuthor?" element={<AuthorRoute ><Tags /></AuthorRoute>} />
                     </Route>
 
                     <Route path='*' element={<NotFound />} />

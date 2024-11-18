@@ -3,8 +3,10 @@ import { CommentForm } from "../../UI/Layout/Post/Comment/CommentForm";
 import { CommentList } from "../../UI/Layout/Post/Comment/CommentList";
 import { Global } from "../../../Helpers/Global";
 import PropTypes from "prop-types";
+import useAuth from "../../../Hooks/useAuth";
 
 export const List = ({ idPost }) => {
+    const { auth } = useAuth()
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [visibleComments, setVisibleComments] = useState(10); // Cantidad de comentarios visibles inicialmente
@@ -15,13 +17,28 @@ export const List = ({ idPost }) => {
 
     const getComments = async () => {
         setLoading(true);
+
         try {
-            const response = await fetch(Global.url + 'comment/' + idPost, {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            });
+            let url
+            let response
+            if (auth && auth.rol === 'Administrador') {
+                url = Global.url + 'comment/private/' + idPost
+                response = await fetch(url, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                });
+            } else {
+                url = Global.url + 'comment/' + idPost
+                response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                });
+            }
 
             const data = await response.json();
 

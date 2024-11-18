@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { Global } from "../../../../../Helpers/Global";
 import PropTypes from "prop-types";
+import { Global } from "../../../../../Helpers/Global";
+import { useState } from "react";
 
-export const DeletePopUp = ({ rol, onClose, getRoles }) => {
+export const DeleteTag = ({ tag, onClose, getTags }) => {
     const [error, setError] = useState('')
 
     const deleteRol = async () => {
-        const response = await fetch(Global.url + 'rol', {
+        const response = await fetch(Global.url + 'tag', {
             method: "DELETE",
-            body: JSON.stringify({ id: rol.id }),
+            body: JSON.stringify({ id: tag.id }),
             credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
@@ -18,19 +18,19 @@ export const DeletePopUp = ({ rol, onClose, getRoles }) => {
         const data = await response.json();
 
         if (data.status === "success") {
-            getRoles();
+            getTags();
             onClose();
-        }else {
-            setError('Ese rol no se puede eliminar debido a que se esta utilzando')
+        } else {
+            setError('Ese tag no se puede eliminar debido a que se esta utilzando')
         }
     };
 
     return (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center z-50 p-4">
             <div className="bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-md transform transition-transform duration-300 scale-100">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">Eliminar Rol de Usuario</h2>
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">Eliminar el tag</h2>
                 <p className="text-gray-600 mb-6 ">
-                    ¿Estás seguro de que deseas eliminar el rol <span className="font-semibold text-gray-800">{rol.name}</span>?<br />
+                    ¿Estás seguro de que deseas eliminar el tag <span className="font-semibold text-gray-800">{tag.name}</span>?<br />
                     <span className="text-sm text-gray-500">Esta acción no se puede deshacer.</span>
                 </p>
                 <div className="flex justify-end gap-4">
@@ -56,11 +56,12 @@ export const DeletePopUp = ({ rol, onClose, getRoles }) => {
                 }
             </div>
         </div>
-    );
+    )
+}
+
+DeleteTag.propTypes = {
+    tag: PropTypes.object,
+    onClose: PropTypes.func,
+    getTags: PropTypes.func
 };
 
-DeletePopUp.propTypes = {
-    rol: PropTypes.object,
-    onClose: PropTypes.func,
-    getRoles: PropTypes.func
-};

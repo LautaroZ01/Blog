@@ -5,6 +5,8 @@ import { formatearFecha } from "../../Helpers/DateParth";
 import { Button } from "../UI/Utils/Button";
 import PropTypes from "prop-types";
 
+import imgPost from '/Resources/Post.png'
+
 import parse from 'html-react-parser';
 import { BtnEdit } from "../UI/Layout/Post/Author/BtnEdit";
 import { useState } from "react";
@@ -33,7 +35,7 @@ export const List = ({ posts = [] }) => {
                             <BtnEdit id={post.id} name={post.author} />
                             <Link to={'/post/' + post.id}>
                                 <img
-                                    src={post.image_url}
+                                    src={post.image_url ? post.image_url : imgPost}
                                     alt={post.title}
                                     className="w-full object-cover object-top shadow-md rounded aspect-video"
                                 />

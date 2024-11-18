@@ -1,27 +1,25 @@
-import { useState, useEffect } from "react";
-import { useForm } from "../../../../../Hooks/useForm";
 import PropTypes from "prop-types";
+import { useForm } from "../../../../../Hooks/useForm";
+import { useEffect, useState } from "react";
 import { Global } from "../../../../../Helpers/Global";
 
-export const EditPopUp = ({ rol, onClose, getRoles }) => {
+export const EditedTag = ({ tag, onClose, getTags }) => {
     const { form, changed } = useForm()
-    const [editRol, setEditRol] = useState({
-        id: rol.id,
-        name: rol.name || '',
-        description: rol.description || ''
+    const [editTag, setEditTag] = useState({
+        id: tag.id,
+        name: tag.name || ''
     })
 
     useEffect(() => {
-        setEditRol({
-            id: rol.id,
-            name: rol.name || '',
-            description: rol.description || ''
+        setEditTag({
+            id: tag.id,
+            name: tag.name || ''
         })
-    }, [rol]);
+    }, [tag]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(Global.url + 'rol/' + editRol.id, {
+        const response = await fetch(Global.url + 'tag/' + editTag.id, {
             method: 'PATCH',
             body: JSON.stringify(form),
             credentials: 'include',
@@ -34,7 +32,7 @@ export const EditPopUp = ({ rol, onClose, getRoles }) => {
 
         if (data.status == 'success') {
             onClose()
-            getRoles()
+            getTags()
         }
 
     };
@@ -42,28 +40,23 @@ export const EditPopUp = ({ rol, onClose, getRoles }) => {
     return (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center z-50">
             <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg transform transition-all duration-300 scale-95">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6">Editar Categoría</h2>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6">Editar Tag</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-5">
                         <label className="block text-sm font-medium text-gray-600 mb-1">Nombre</label>
-                        <input
-                            name="name"
-                            type="text"
-                            defaultValue={editRol.name}
-                            onChange={changed}
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary-500 shadow-sm transition ease-in-out"
-                            required
-                        />
-                    </div>
-                    <div className="mb-5">
-                        <label className="block text-sm font-medium text-gray-600 mb-1">Descripción</label>
-                        <textarea
-                            name="description"
-                            defaultValue={editRol.description}
-                            onChange={changed}
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary-500 shadow-sm transition ease-in-out"
-                            rows="4"
-                        />
+                        <div className="flex items-center gap-2 w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition duration-200">
+                            <strong className="text-text-600">#</strong>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                onChange={changed}
+                                defaultValue={editTag.name}
+                                required
+                                className="w-full p-2 outline-none"
+                                placeholder="Escribe el nombre del tag"
+                            />
+                        </div>
                     </div>
                     <div className="flex justify-end space-x-3">
                         <button
@@ -83,11 +76,11 @@ export const EditPopUp = ({ rol, onClose, getRoles }) => {
                 </form>
             </div>
         </div>
-    );
-};
+    )
+}
 
-EditPopUp.propTypes = {
-    rol: PropTypes.object,
+EditedTag.propTypes = {
+    tag: PropTypes.object,
     onClose: PropTypes.func,
-    getRoles: PropTypes.func
+    getTags: PropTypes.func
 };

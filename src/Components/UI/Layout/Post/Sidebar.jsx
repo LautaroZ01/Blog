@@ -11,7 +11,6 @@ export const Sidebar = ({ search = {}, searcher = null, searcherId = null, id_au
     useEffect(() => {
         getAllCategories();
 
-        console.log(id_author)
         if (id_author) {
             getSocial();
 
@@ -44,7 +43,6 @@ export const Sidebar = ({ search = {}, searcher = null, searcherId = null, id_au
 
         if (data.status === 'success') {
             setSocials(data.socialMedials)
-            console.log(data)
         }
     }
 

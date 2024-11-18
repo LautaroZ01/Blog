@@ -1,16 +1,10 @@
-import { useState } from "react";
-import { Global } from "../../../../../Helpers/Global"
 import PropTypes from "prop-types";
-import { DeleteAllPost } from "./DeleteAllPost";
-import useAuth from "../../../../../Hooks/useAuth";
+import { Global } from "../../../../../Helpers/Global";
 
-export const DeletePopUp = ({ post, onClose, getPosts }) => {
-    const [showDeleteAll, setShowDeleteAll] = useState(false)
-
-    const { auth } = useAuth()
+export const DeleteAllPost = ({ post, onClose, getPosts }) => {
 
     const deletePost = async () => {
-        const response = await fetch(Global.url + 'post', {
+        const response = await fetch(Global.url + 'post/private', {
             method: 'DELETE',
             body: JSON.stringify({ id: post.id }),
             credentials: 'include',
@@ -25,15 +19,6 @@ export const DeletePopUp = ({ post, onClose, getPosts }) => {
             getPosts()
             onClose()
         }
-    }
-
-    const handleDeleteAll = () => {
-        setShowDeleteAll(true)
-    }
-
-    const closedPopUp = () => {
-        setShowDeleteAll(false)
-        onClose()
     }
 
     return (
@@ -57,31 +42,15 @@ export const DeletePopUp = ({ post, onClose, getPosts }) => {
                         onClick={deletePost}
                         className="px-5 py-2.5 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition ease-in-out duration-200 shadow-md"
                     >
-                        Deshabilitar
+                        Eliminar
                     </button>
-                    {auth && auth.rol === 'Administrador' &&
-                        <button
-                            type="button"
-                            onClick={handleDeleteAll}
-                            className="px-5 py-2.5 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition ease-in-out duration-200 shadow-md"
-                        >
-                            Eliminar
-                        </button>
-                    }
                 </div>
             </div>
-            {showDeleteAll && (
-                <DeleteAllPost
-                    post={post}
-                    onClose={closedPopUp}
-                    getPosts={getPosts}
-                />
-            )}
         </div>
     )
 }
 
-DeletePopUp.propTypes = {
+DeleteAllPost.propTypes = {
     post: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired,
     getPosts: PropTypes.func.isRequired

@@ -34,7 +34,7 @@ export const Welcome = () => {
                 </div>
                 <div className='flex gap-4'>
                     <Button path={'/post'}>Ver articulos</Button>
-                    <Button type={2} path='#contact'>Contactar</Button>
+                    <a href='#contact' className='py-2 px-4 rounded-md transition-all duration-[.25s] flex items-center justify-center gap-2 border border-primary-500 text-primary-800 shadow-inner hover:border-transparent hover:bg-primary-500 hover:text-white'>Contactar</a>
                 </div>
             </section>
         </main>

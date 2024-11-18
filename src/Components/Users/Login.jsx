@@ -66,7 +66,7 @@ export const Login = () => {
                     </div>
                 </div>
 
-                <Link className="text-center text-accent-600 mt-4">¿ Olvidaste tu contraseña ?</Link>
+                {/* <Link className="text-center text-accent-600 mt-4">¿ Olvidaste tu contraseña ?</Link> */}
                 {error != '' && <p className="p-2 text-center bg-red-500/10 text-red-500 rounded-md font-bold text-sm">{error}</p>}
                 <button className="bg-primary-500 px-4 py-2 rounded-md text-white  border border-transparent hover:bg-transparent hover:border-primary-500 hover:text-black hover:shadow-md transition-all duration-[.25s]">Iniciar sesion</button>
                 <Link to='/user/registro' className="text-center text-accent-600">¿ Aún no tienes una cuenta ?</Link>
@@ -80,12 +80,12 @@ export const Login = () => {
                         Continuar con Google
                     </p>
                 </button>
-                <button className="flex w-full p-2 items-center justify-center gap-6 rounded-md shadow-md hover:shadow-none transition-all duration-[.25s]">
+                {/* <button className="flex w-full p-2 items-center justify-center gap-6 rounded-md shadow-md hover:shadow-none transition-all duration-[.25s]">
                     <FaFacebook className="text-blue-500" />
                     <p className="flex-1 text-center">
                         Continuar con Facebook
                     </p>
-                </button>
+                </button> */}
             </div>
 
         </section>

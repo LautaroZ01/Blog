@@ -11,11 +11,13 @@ import "react-quill/dist/quill.snow.css";
 import { Button } from '../../UI/Utils/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowBack } from '../../UI/Utils/ArrowBack';
+import { Tags } from '../../UI/Layout/Post/Author/Tags';
 
 export const Edit = () => {
     const [value, setValue] = useState('');
     const [loading, setLoading] = useState(false);
     const [post, setPost] = useState({})
+    const [listTags, setListTags] = useState([])
 
     const { id } = useParams()
     const { form, changed } = useForm();
@@ -43,6 +45,7 @@ export const Edit = () => {
             setPost(data.post)
             setValue(data.post.content)
             setLoading(false)
+            setListTags(data.tags)
         }
     }
 
@@ -59,6 +62,7 @@ export const Edit = () => {
 
     const editPost = async (e) => {
         e.preventDefault();
+        window.scrollTo(0, 0);
         setLoading(true);
 
         if (!value.trim()) {
@@ -99,6 +103,7 @@ export const Edit = () => {
                 if (image2) {
                     await uploadFile(image2, post.images[0].id);
                 }
+                await editTags(data.post.id, form.list)
                 setPost(data.post)
                 setLoading(false);
                 navigate("/dashboard/posts");
@@ -133,9 +138,32 @@ export const Edit = () => {
         }
     };
 
+    const editTags = async (id, list) => {
+        const response = await fetch(Global.url + "tag/post/" + id, {
+            method: "PATCH",
+            body: JSON.stringify({ list }),
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+
+        const tag = await response.json()
+
+        if (tag.status === 'success') {
+            console.log('Tags correctos')
+        } else {
+            console.log('Algo salio mal con los tags')
+        }
+    }
+
     return (
         <div className='bg-bg-100'>
-            {loading ? <h1>Cargando...</h1> :
+            {loading ?
+                <div className='h-screen grid place-content-center'>
+                    <div className="loader"></div>
+                </div>
+                :
                 <form onSubmit={editPost}>
                     <div className='w-full max-h-96'>
                         <UploadFile
@@ -200,6 +228,7 @@ export const Edit = () => {
                             <h2 className='font-bold text-accent-500'>Caracteristicas </h2>
                             <Category changed={changed} name={post.category} />
                             <States changed={changed} name={post.state} />
+                            <Tags form={form} listTags={listTags} />
                             <Button isButton={true}>Editar articulos</Button>
                         </div>
                     </section>
