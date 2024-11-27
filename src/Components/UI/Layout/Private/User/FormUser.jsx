@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "../../../../../Hooks/useForm";
 import { Global } from "../../../../../Helpers/Global";
 import useAuth from "../../../../../Hooks/useAuth";
-
+import PropTypes from "prop-types";
 
 export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit = null }) => {
     const { form, changed } = useForm({});
@@ -117,7 +117,7 @@ export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit 
                         <option value={user.address}>{user.address}</option>
                     </select>
                     :
-                    <p className="bg-transparent p-2 rounded-md">
+                    <p className="bg-transparent p-2 rounded-md capitalize">
                         {user.address || ''}
                     </p>
                 }
@@ -130,7 +130,7 @@ export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit 
             {isEdit &&
                 <button
                     disabled={!isEnable}
-                    className={`col-span-2 p-2 px-4 menu-nav flex items-center justify-center gap-2 shadow-md rounded-md transition-all duration-[.25s] border border-transparent  ${!isEnable ? ' text-gray-400' : 'bg-primary-200 text-white hover:bg-transparent hover:border-primary-200 hover:text-black'
+                    className={`col-span-2 p-2 px-4 menu-nav flex items-center justify-center gap-2 shadow-md rounded-md transition-all duration-[.25s] border border-transparent  ${!isEnable ? ' text-gray-400' : 'bg-primary-500 text-white hover:bg-transparent hover:border-primary-200 hover:text-black'
                         }`}
                 >
                     Guardar cambios
@@ -139,3 +139,11 @@ export const FormUser = ({ user = {}, setUser = null, isEdit = false, setIsEdit 
         </form>
     )
 }
+
+FormUser.propTypes = {
+  user: PropTypes.object.isRequired,
+  isButton: PropTypes.bool,
+  isEdit: PropTypes.bool,
+  setUser: PropTypes.func,
+  setIsEdit: PropTypes.func,
+};
